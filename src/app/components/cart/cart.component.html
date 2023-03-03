@@ -1,0 +1,62 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class=" mt-5">
+    <table mat-table [dataSource]="cartDetails" class="mat-elevation-z8">
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Name </b></th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.product.productName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef class="text-center"><b> Description </b> </th>
+            <td mat-cell *matCellDef="let element" class="text-center"> {{element.product.productDescription}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Single Product Price">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Single Product Price </b> </th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+              <div *ngIf="element.product.productDiscountedPrice !== 0 && element.product.productDiscountedPrice !== null"> 
+                <div style="text-decoration:line-through;"> ${{element.product.productActualPrice}}</div>
+                <div> ${{element.product.productDiscountedPrice}}</div>
+              </div>
+              <div *ngIf="element.product.productDiscountedPrice === 0 && element.product.productDiscountedPrice === null"> 
+                ${{element.product.productActualPrice}}
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Total Price">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Total Price </b> </th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+              <div *ngIf="element.product.productDiscountedPrice !== 0 && element.product.productDiscountedPrice !== null"> 
+                <div style="text-decoration:line-through;"> ${{getTotalPrice(element.product.productActualPrice, element.quantity)}}</div>
+                <div> ${{getTotalPrice(element.product.productDiscountedPrice, element.quantity)}}</div>
+              </div>
+              <div *ngIf="element.product.productDiscountedPrice === 0 && element.product.productDiscountedPrice === null"> 
+                ${{getTotalPrice(element.product.productActualPrice, element.quantity)}}
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Quantity">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Quantity </b> </th>
+            <td mat-cell *matCellDef="let element" class="text-center"> {{element.quantity}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Action </b> </th>
+            <td mat-cell *matCellDef="let element" class="text-center"> 
+              <button mat-icon-button color="warn" (click)="delete(element.id)">
+                <mat-icon>
+                  delete
+                </mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<div align="right" class="mb-3 mt-3">
+  <button (click)="checkout()" class="btn-color">Checkout</button>
+</div>
+</div>

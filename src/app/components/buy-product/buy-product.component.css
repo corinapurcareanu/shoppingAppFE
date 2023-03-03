@@ -1,0 +1,36 @@
+
+.field {
+    border-radius: 3px;
+    padding: 5px;
+}
+
+mat-label {
+    /* padding: 21px; */
+    padding-left: 2px;
+    padding-right: 30px;
+
+}
+
+mat-form-field {
+    width: 90%;
+}
+
+.btn-color {
+    background-color: #9e7361;
+      color: white;
+      padding: 8px;
+      border-radius: 6px;
+      width: 150px;
+      border-color: transparent;
+  }
+  
+  .btn-color:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+  }
+
+  .error-style {
+    padding: 10px;
+    color: red;
+}

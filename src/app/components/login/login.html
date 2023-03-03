@@ -1,0 +1,56 @@
+
+<div class="welcome">
+    <h1>Please Log in!</h1>
+</div>
+
+<div class="container mt-5 form-specs">
+    <div class="card" style="padding: 20px;">
+
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter your username</mat-label>
+                    <input matInput
+    
+                    type="text"
+                    ngModel
+                    name="userName"
+                    id="userName"
+                    placeholder="Enter your username"
+                    class="field"
+                    required
+                    > 
+                </mat-form-field>
+            </p>
+            <div *ngIf="nameNotFound"  class="error-style">
+                    Please enter your username!
+            </div>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput
+                    type="password"
+                    ngModel
+                    name="userPassword"
+                    id="userPassword"
+                    placeholder="Enter your password"
+                    class="field"
+                    required
+                    >
+                </mat-form-field>
+            </p>
+            <div *ngIf="passwordNotFound" class="error-style">
+                Please enter your password!
+            </div>
+            <div *ngIf="wrongCredentials" class="error-style">
+                Wrong credentials!
+            </div>
+
+            <button type="Submit" class="rounded-2 w-100 btn-color">Login </button>
+        </form> 
+    </div>
+</div>
+
+<div class="content">
+    Don't have an account yet? <a href="/sign-up"> Sign-up</a>
+</div>

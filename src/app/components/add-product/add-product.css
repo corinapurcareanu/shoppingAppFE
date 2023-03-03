@@ -1,0 +1,115 @@
+.form-specs {
+    max-width: 500px;
+}
+
+mat-form-field {
+    width: 100%;
+  }
+
+  .btn-color {
+    background-color: #9e7361;
+      color: white;
+      padding: 8px;
+      border-radius: 6px;
+      width: 150px;
+      border-color: transparent;
+  }
+  
+  .btn-color:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+  }
+
+mat-label {
+    padding: 20px;
+
+}
+
+.field {
+    width: 100%;
+    border-radius: 3px;
+    padding: 8px;
+    margin: 10px 0px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 100px;
+    font-weight: 600;
+    font-size: 150%;
+    font-family: 'Bradley Hand', cursive;
+}
+
+.content {
+    font-size: 120%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+a {
+    color:rgb(128, 67, 5);
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px rgb(221, 199, 177) inset; /* Change the color to your own background color */
+}
+
+mat-grid-tile {
+    border: 1px solid #eee;
+}
+
+.btn-remove-image {
+    position: absolute;
+    cursor: pointer;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: auto;
+    text-align: center;
+}
+
+.dropzone {
+   height: 150px;
+   min-width: 100px;
+   display: table;
+   background-color: #eee;
+   width: 300px;
+   border: dashed 1px #aaa;
+   border-radius: 10px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.text-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.centered {
+    text-align: center;
+}
+
+.browse-button {
+    color:rgb(128, 67, 5);
+    cursor: pointer;
+}
+
+.error-style {
+    padding: 10px;
+    color: red;
+}
+
+  .welcome {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-weight: 600;
+    font-size: 150%;
+    font-family: 'Bradley Hand', cursive;
+  }
+
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */

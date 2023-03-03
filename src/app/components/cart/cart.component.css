@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+}
+
+  table td {
+    padding: 10px;
+  }
+
+.mat-column-description {
+    width: 35% !important;
+  }
+
+.btn-color {
+  background-color: #9e7361;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+    width: 150px;
+    border-color: transparent;
+}
+
+.btn-color:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';

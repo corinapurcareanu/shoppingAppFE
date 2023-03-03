@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+}
+
+.my-dialog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  table td {
+    padding: 10px;
+  }
+
+  .mat-column-description {
+    width: 35% !important;
+  }
+  
+
+  .product-zoom-image {
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.images {
+  border: 1px solid lightgrey;
+}
+
+  @import '~@angular/material/prebuilt-themes/indigo-pink.css';

@@ -1,0 +1,118 @@
+<div class="container mt-5">
+    <div class="card p-5">
+        <div class="row">
+            <div class="col-6">
+                <form #orderForm="ngForm"
+                (ngSubmit)="placeOrder(orderForm)">
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Full name</mat-label>
+                        <input matInput
+                        type="text"
+                        ngModel
+                        name="orderFullName"
+                        id="orderFullName"
+                        placeholder="Full name"
+                        class="field"
+                        [(ngModel)]="orderInput.orderFullName"
+                        required
+                        > 
+                    </mat-form-field>
+                </p>
+                <div *ngIf="nameNotFound"  class="error-style">
+                    Please enter your full name!
+                </div>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Full address</mat-label>
+                        <input matInput
+                        type="text"
+                        ngModel
+                        name="orderFullAddress"
+                        id="orderFullAddress"
+                        placeholder="Full address"
+                        class="field"
+                        [(ngModel)]="orderInput.orderFullAddress"
+                        required
+                        > 
+                    </mat-form-field>
+                </p>
+                <div *ngIf="addressNotFound"  class="error-style">
+                    Please enter your address!
+                </div>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Contact number</mat-label>
+                        <input matInput
+                        type="text"
+                        ngModel
+                        name="orderContactNumber"
+                        id="orderContactNumber"
+                        placeholder="Contact number"
+                        class="field"
+                        [(ngModel)]="orderInput.orderContactNumber"
+                        required
+                        > 
+                    </mat-form-field>
+                </p>
+                <div *ngIf="phoneNumberNotFound"  class="error-style">
+                    Please enter your contact number!
+                </div>
+                <div *ngIf="wrongPhoneNumberFormat"  class="error-style">
+                    Phone number should contain only digits!
+                </div>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Alternate contact number</mat-label>
+                        <input matInput
+                        type="text"
+                        ngModel
+                        name="orderAlternateContactNumber"
+                        id="orderAlternateContactNumber"
+                        placeholder="Alternate contact number"
+                        class="field"
+                        [(ngModel)]="orderInput.orderAlternateContactNumber"
+                        > 
+                    </mat-form-field>
+                </p>
+                <div *ngIf="wrongAlternatePhoneNumberFormat"  class="error-style">
+                    Phone number should contain only digits!
+                </div>
+                <div align="right">
+                    <button type="submit" class="btn-color">
+                      Place order 
+                    </button>
+                </div>
+                </form>
+            </div>
+            <div class="col-6">
+                <table class="table">
+                    <thead class="thead">
+                        <tr>
+                            <th>Name</th>
+                            <th>Single product price</th>
+                            <th>Quantity</th>
+                            <th>Total price</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        <tr *ngFor="let element of orderInput.cart">
+                            <td> {{element.product.productName}} </td>
+                            <td> ${{element.product.productDiscountedPrice}} </td>
+                            <td> ${{element.quantity}} </td>
+                            <td>
+                                ${{getCalculatedTotal(element.quantity, element.product.productDiscountedPrice)}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td> ${{getCalculatedGrandTotal()}} </td>
+                        </tr>
+                    </tbody>
+                </table>            
+            </div>
+        </div>
+    </div>
+</div>

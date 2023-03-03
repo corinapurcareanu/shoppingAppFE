@@ -1,0 +1,419 @@
+<div class="toolbar" role="banner">
+    <table>
+      <tr>
+        <td>
+          <span class="store">Beauty Products Store</span>
+        </td>
+        <td>
+          <!-- Large window size -->
+          <form  class="search-bar" #searchkeyword="ngForm" (ngSubmit)="searchByKeyword(searchkeyword)">
+            <input
+            ngModel
+            type="text"
+            placeholder="Search for a product ..."
+            name="searchKey"
+            id="searchKey">
+            <button type="submit">
+              <svg id="search-logo" xmlns="http://www.w3.org/2000/svg" width="17" height="27" fill="currentColor" class="bi bi-search" viewBox="0 0 16 18" id="IconChangeColor"> 
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" id="mainIconPathAttribute"></path>
+              </svg>
+            </button>
+          </form>
+
+          <!-- Small window size -->
+          <form  class="search-bar-small" #searchkeyword="ngForm" (ngSubmit)="searchByKeyword(searchkeyword)">
+            <input
+            ngModel
+            type="text"
+            placeholder=""
+            name="searchKey"
+            id="searchKey"
+            >
+            <button type="submit">
+              <svg id="search-logo" xmlns="http://www.w3.org/2000/svg" width="17" height="27" fill="currentColor" class="bi bi-search" viewBox="0 0 16 18" id="IconChangeColor"> 
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" id="mainIconPathAttribute"></path>
+              </svg>
+            </button>
+          </form>
+
+        </td>
+
+
+        <td align="right" style="margin-right: 10px;">
+          <a href="/">
+            <svg *ngIf="router.url !== '/'" id="home-logo" data-name="Logo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
+              <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" fill="white"></path>
+            </svg>
+            <svg *ngIf="router.url === '/'" id="home-logo-current" data-name="Logo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
+              <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" fill="white"></path>
+            </svg>
+          </a>
+         <div class="dropdown">
+              <svg id="user-logo" data-name="Logo" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <rect width="400" height="400" fill="none"/>
+                <path d="M8,8a3,3,0,1,0,0-6,3,3,0,0,0,0,6zm2-3a2,2,0,1,1-4,0,2,2,0,0,1,4,0zm4,8c0,1-1,1-1,1H3s-1,0-1-1,1-4,6-4,6,3,6,4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516,10.68,10.289,10,8,10c-2.29,0-3.516.68-4.168,1.332-.678.678-.83,1.418-.832,1.664h10z" fill="white"></path> 
+              </svg>
+            <div class="dropdown-content">
+                    <button class="authenticate" *ngIf = "!isLoggedIn()" routerLink="/authenticate">Log-in</button>
+                    <button class="authenticate" *ngIf = "!isLoggedIn()" routerLink="/sign-up">Sign-up</button>
+                    <button class="authenticate" *ngIf = "isLoggedIn()" (click)="logout()">Log-out</button>
+            </div>
+        </div>
+          <a href="cart">
+            <svg *ngIf="router.url !== '/cart'" id="shopping-logo" data-name="Logo"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 600 572">
+              <path d="M171.7 191.1H404.3L322.7 35.07C316.6 23.31 321.2 8.821 332.9 2.706C344.7-3.409 359.2 1.167 365.3 12.93L458.4 191.1H544C561.7 191.1 576 206.3 576 223.1C576 241.7 561.7 255.1 544 255.1L492.1 463.5C484.1 492 459.4 512 430 512H145.1C116.6 512 91 492 83.88 463.5L32 255.1C14.33 255.1 0 241.7 0 223.1C0 206.3 14.33 191.1 32 191.1H117.6L210.7 12.93C216.8 1.167 231.3-3.409 243.1 2.706C254.8 8.821 259.4 23.31 253.3 35.07L171.7 191.1zM191.1 303.1C191.1 295.1 184.8 287.1 175.1 287.1C167.2 287.1 159.1 295.1 159.1 303.1V399.1C159.1 408.8 167.2 415.1 175.1 415.1C184.8 415.1 191.1 408.8 191.1 399.1V303.1zM271.1 303.1V399.1C271.1 408.8 279.2 415.1 287.1 415.1C296.8 415.1 304 408.8 304 399.1V303.1C304 295.1 296.8 287.1 287.1 287.1C279.2 287.1 271.1 295.1 271.1 303.1zM416 303.1C416 295.1 408.8 287.1 400 287.1C391.2 287.1 384 295.1 384 303.1V399.1C384 408.8 391.2 415.1 400 415.1C408.8 415.1 416 408.8 416 399.1V303.1z" fill="white"></path>
+            </svg>
+            <svg *ngIf="router.url === '/cart'" id="shopping-logo-current" data-name="Logo"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 600 572">
+              <path d="M171.7 191.1H404.3L322.7 35.07C316.6 23.31 321.2 8.821 332.9 2.706C344.7-3.409 359.2 1.167 365.3 12.93L458.4 191.1H544C561.7 191.1 576 206.3 576 223.1C576 241.7 561.7 255.1 544 255.1L492.1 463.5C484.1 492 459.4 512 430 512H145.1C116.6 512 91 492 83.88 463.5L32 255.1C14.33 255.1 0 241.7 0 223.1C0 206.3 14.33 191.1 32 191.1H117.6L210.7 12.93C216.8 1.167 231.3-3.409 243.1 2.706C254.8 8.821 259.4 23.31 253.3 35.07L171.7 191.1zM191.1 303.1C191.1 295.1 184.8 287.1 175.1 287.1C167.2 287.1 159.1 295.1 159.1 303.1V399.1C159.1 408.8 167.2 415.1 175.1 415.1C184.8 415.1 191.1 408.8 191.1 399.1V303.1zM271.1 303.1V399.1C271.1 408.8 279.2 415.1 287.1 415.1C296.8 415.1 304 408.8 304 399.1V303.1C304 295.1 296.8 287.1 287.1 287.1C279.2 287.1 271.1 295.1 271.1 303.1zM416 303.1C416 295.1 408.8 287.1 400 287.1C391.2 287.1 384 295.1 384 303.1V399.1C384 408.8 391.2 415.1 400 415.1C408.8 415.1 416 408.8 416 399.1V303.1z" fill="white"></path>
+            </svg>
+          </a>
+          </td>
+      </tr>
+      <tr>
+        <td>
+           <!-- Large window size -->
+          <div class="products">
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/make-up'" class="dropbtn" routerLink="/make-up">Make-up</button>
+              <button *ngIf="router.url === '/make-up'" class="dropbtn-current" routerLink="/make-up">Make-up</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="make-up/face">Face</a></th>
+                    <th><a href="make-up/eyes">Eyes</a></th>
+                    <th><a href="make-up/eyebrows">Eyebrows</a></th>
+                    <th><a href="make-up/lips">Lips</a></th>
+                    <th><a href="make-up/nails">Nails</a></th>
+                    <th><a href="make-up/brushes">Make-up brushes</a></th>
+                  </tr>
+                  <tr>
+                    <td><a href="make-up/face/foundation">Foundation</a></td>
+                    <td><a href="make-up/eyes/palette">Make-up palette</a></td>
+                    <td><a href="make-up/eyebrows/eyebrows-pencil">Eyebrows pencil</a></td>
+                    <td><a href="make-up/lips/lipstick">Lipstick</a></td>
+                    <td><a href="make-up/nails/nail-polish">Nail polish</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a href="make-up/face/concealer">Concealer</a></td>
+                    <td><a href="make-up/eyes/mascara">Mascara</a></td>
+                    <td><a href="make-up/eyebrows/eyebrows-gel">Eyebrows gel</a></td>
+                    <td><a href="make-up/lips/gloss">Gloss</a></td>
+                    <td><a href="make-up/nails/nail-base">Nail base</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a href="make-up/face/face-powder">Face powder</a></td>
+                    <td><a href="make-up/eyes/eyeliner">Eyeliner</a></td>
+                    <td></td>
+                    <td><a href="make-up/lips/lip-pencil">Lip pencil</a></td>
+                    <td><a href="make-up/nails/top-coat">Top coat</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><a href="make-up/eyes/eye-pencil">Eye pencil</a></td>
+                    <td></td>
+                    <td><a href="make-up/lips/lip-balm">Lip balm</a></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><a href="make-up/eyes/lashes">False lashes</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/perfume'" class="dropbtn"  routerLink="/perfume">Perfume</button>
+              <button *ngIf="router.url === '/perfume'" class="dropbtn-current"  routerLink="/perfume">Perfume</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="perfume/for-women">Perfumes for women</a></th>
+                    <th><a href="perfume/for-men">Perfumes for men</a></th>
+                  </tr>
+                  <tr>
+                    <td><a href="perfume/for-women/eau-de-parfume">Woman eau de parfume</a></td>
+                    <td><a href="perfume/for-men/eau-de-parfume">Man eau de parfume</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="perfume/for-women/eau-de-toalette">Woman eau de toalette</a></td>
+                    <td><a href="perfume/for-men/eau-de-toalette">Man eau de toalette</a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/skin-care'" class="dropbtn" routerLink="/skin-care">Skin care</button>
+              <button *ngIf="router.url === '/skin-care'" class="dropbtn-current" routerLink="/skin-care">Skin care</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="skin-care/face-care">Face care</a></th>
+                    <th><a href="skin-care/body-care">Body care</a></th>
+                    <th><a href="skin-care/hands-care">Hands care</a></th>
+                    <th><a href="skin-care/feet-care">Feet care</a></th>
+                  </tr>
+                  <tr>
+                    <td><a href="skin-care/face-care/day-cream">Day face cream</a></td>
+                    <td><a href="skin-care/body-care/body-cream">Body cream</a></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a href="skin-care/face-care/night-cream">Night face cream</a></td>
+                    <td><a href="skin-care/body-care/body-oil">Body oil</a></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a href="skin-care/face-care/face-mask">Face mask</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/hair'" class="dropbtn" routerLink="hair">Hair</button>
+              <button *ngIf="router.url === '/hair'" class="dropbtn-current" routerLink="hair">Hair</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="hair/hair-care">Hair care</a></th>
+                    <th><a href="hair/accesories">Accesories</a></th>
+                    <th><a href="hair/styling">Styling</a></th>
+                  </tr>
+                  <tr>
+                    <td><a href="hair/hair-care/shampoo">Shampoo</a></td>
+                    <td><a href="hair/accesories/hair-tie">Hair tie</a></td>
+                    <td><a href="hair/styling/hair-gel">Hair gel</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="hair/hair-care/hair-balm">Hair balm</a></td>
+                    <td><a href="hair/accesories/hair-brush">Hair brush</a></td>
+                    <td><a href="hair/styling/hair-spray">Hair spray</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="hair/hair-care/hair-mask">Hair mask</a></td>
+                    <td><a href="hair/accesories/hair-pins">Hair pins</a></td>
+                    <td><a href="hair/styling/hair-wax">Hair wax</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="hair/hair-care/hair-oil">Hair oil</a></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/bath'" class="dropbtn" routerLink="bath">Bath</button>
+              <button *ngIf="router.url === '/bath'" class="dropbtn-current" routerLink="bath">Bath</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="bath/shower-gel">Shower gel</a></th>
+                    <th><a href="bath/shower-oil">Shower oil</a></th>
+                    <th> <a href="bath/soap">Soap</a></th>
+                    <th> <a href="bath/bath-salt">Bath salt</a></th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Small window size -->
+          <div class="small-dropdown">
+            <svg id="menu-logo" data-name="Logo" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" fill="white"></path>
+            </svg>
+            <div class="small-dropdown-content">
+           <div class="products-small">
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/make-up'" class="dropbtn-small" routerLink="/make-up">Make-up</button>
+              <button *ngIf="router.url === '/make-up'" class="dropbtn-small-current" routerLink="/make-up">Make-up</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="make-up/face">Face</a></th>
+                    <th><a href="make-up/eyes">Eyes</a></th>
+                    <th><a href="make-up/eyebrows">Eyebrows</a></th>
+                    <th><a href="make-up/lips">Lips</a></th>
+                    <th><a href="make-up/nails">Nails</a></th>
+                    <th><a href="make-up/brushes">Make-up brushes</a></th>
+                  </tr>
+                  <tr>
+                    <td><a href="make-up/face/foundation">Foundation</a></td>
+                    <td><a href="make-up/eyes/palette">Make-up palette</a></td>
+                    <td><a href="make-up/eyebrows/eyebrows-pencil">Eyebrows pencil</a></td>
+                    <td><a href="make-up/lips/lipstick">Lipstick</a></td>
+                    <td><a href="make-up/nails/nail-polish">Nail polish</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a href="make-up/face/concealer">Concealer</a></td>
+                    <td><a href="make-up/eyes/mascara">Mascara</a></td>
+                    <td><a href="make-up/eyebrows/eyebrows-gel">Eyebrows gel</a></td>
+                    <td><a href="make-up/lips/gloss">Gloss</a></td>
+                    <td><a href="make-up/nails/nail-base">Nail base</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a href="make-up/face/face-powder">Face powder</a></td>
+                    <td><a href="make-up/eyes/eyeliner">Eyeliner</a></td>
+                    <td></td>
+                    <td><a href="make-up/lips/lip-pencil">Lip pencil</a></td>
+                    <td><a href="make-up/nails/top-coat">Top coat</a></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><a href="make-up/eyes/eye-pencil">Eye pencil</a></td>
+                    <td></td>
+                    <td><a href="make-up/lips/lip-balm">Lip balm</a></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><a href="make-up/eyes/lashes">False lashes</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/perfume'" class="dropbtn-small"  routerLink="/perfume">Perfume</button>
+              <button *ngIf="router.url === '/perfume'" class="dropbtn-small-current"  routerLink="/perfume">Perfume</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="perfume/for-women">Perfumes for women</a></th>
+                    <th><a href="perfume/for-men">Perfumes for men</a></th>
+                  </tr>
+                  <tr>
+                    <td><a href="perfume/for-women/eau-de-parfume">Woman eau de parfume</a></td>
+                    <td><a href="perfume/for-men/eau-de-parfume">Man eau de parfume</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="perfume/for-women/eau-de-toalette">Woman eau de toalette</a></td>
+                    <td><a href="perfume/for-men/eau-de-toalette">Man eau de toalette</a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/skin-care'" class="dropbtn-small" routerLink="/skin-care">Skin care</button>
+              <button *ngIf="router.url === '/skin-care'" class="dropbtn-small-current" routerLink="/skin-care">Skin care</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="skin-care/face-care">Face care</a></th>
+                    <th><a href="skin-care/body-care">Body care</a></th>
+                    <th><a href="skin-care/hands-care">Hands care</a></th>
+                    <th><a href="skin-care/feet-care">Feet care</a></th>
+                  </tr>
+                  <tr>
+                    <td><a href="skin-care/face-care/day-cream">Day face cream</a></td>
+                    <td><a href="skin-care/body-care/body-cream">Body cream</a></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a href="skin-care/face-care/night-cream">Night face cream</a></td>
+                    <td><a href="skin-care/body-care/body-oil">Body oil</a></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><a href="skin-care/face-care/face-mask">Face mask</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/hair'" class="dropbtn-small" routerLink="hair">Hair</button>
+              <button *ngIf="router.url === '/hair'" class="dropbtn-small-current" routerLink="hair">Hair</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="hair/hair-care">Hair care</a></th>
+                    <th><a href="hair/accesories">Accesories</a></th>
+                    <th><a href="hair/styling">Styling</a></th>
+                  </tr>
+                  <tr>
+                    <td><a href="hair/hair-care/shampoo">Shampoo</a></td>
+                    <td><a href="hair/accesories/hair-tie">Hair tie</a></td>
+                    <td><a href="hair/styling/hair-gel">Hair gel</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="hair/hair-care/hair-balm">Hair balm</a></td>
+                    <td><a href="hair/accesories/hair-brush">Hair brush</a></td>
+                    <td><a href="hair/styling/hair-spray">Hair spray</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="hair/hair-care/hair-mask">Hair mask</a></td>
+                    <td><a href="hair/accesories/hair-pins">Hair pins</a></td>
+                    <td><a href="hair/styling/hair-wax">Hair wax</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="hair/hair-care/hair-oil">Hair oil</a></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+    
+            <div class="dropdown">
+              <button *ngIf="router.url !== '/bath'" class="dropbtn-small" routerLink="bath">Bath</button>
+              <button *ngIf="router.url === '/bath'" class="dropbtn-small-current" routerLink="bath">Bath</button>
+              <div class="dropdown-content">
+                <table style="width:max-content">
+                  <tr>
+                    <th><a href="bath/shower-gel">Shower gel</a></th>
+                    <th><a href="bath/shower-oil">Shower oil</a></th>
+                    <th> <a href="bath/soap">Soap</a></th>
+                    <th> <a href="bath/bath-salt">Bath salt</a></th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+            </div>
+        </div>
+        </td>
+        <td>
+          <button class="admin-functions" *ngIf = "isAdmin()  && router.url !== '/show-product-details'" routerLink="/show-product-details"> Show product details </button>
+          <button class="admin-functions-current" *ngIf = "isAdmin() && router.url === '/show-product-details'" routerLink="/show-product-details"> Show product details </button>
+        </td>
+        <td align="right">
+          <button class="admin-functions" *ngIf = "isAdmin() && router.url !== '/add-product'" routerLink="/add-product"> Add new product </button>
+          <button class="admin-functions-current" *ngIf = "isAdmin() && router.url === '/add-product'" routerLink="/add-product"> Add new product </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  

@@ -1,0 +1,137 @@
+<div class="welcome">
+    <h1>Please Sign Up!</h1>
+</div>
+
+<div class="container mt-5 form-specs">
+    <div class="card" style="padding: 20px;">
+        <div class="container mt-5 form-specs">
+            <div class="card" style="padding: 20px;">
+        
+                <form #signUpForm="ngForm" (ngSubmit)="signUp(signUpForm)">
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Enter your username</mat-label>
+                            <input matInput
+                            appearance="outline"
+                            type="text"
+                            ngModel
+                            name="userName"
+                            id="userName"
+                            placeholder="Enter your username"
+                            class="field"
+                            required
+                            > 
+                        </mat-form-field>
+                    </p>
+                    <div *ngIf="nameNotFound"  class="error-style">
+                            Please enter your username!
+                    </div>
+                    <div *ngIf="shortName" class="error-style">
+                        User name should have at least 6 characters!
+                    </div>
+
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Enter your first name</mat-label>
+                            <input matInput
+                            type="text"
+                            ngModel
+                            name="userFirstName"
+                            id="userFirstName"
+                            placeholder="Enter your first name"
+                            class="field"
+                            required
+                            > 
+                        </mat-form-field>
+                    </p>
+                    <div *ngIf="firstNameNotFound"  class="error-style">
+                            Please enter your first name!
+                    </div>
+
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Enter your last name</mat-label>
+                            <input matInput
+                            type="text"
+                            ngModel
+                            name="userLastName"
+                            id="userLastName"
+                            placeholder="Enter your last name"
+                            class="field"
+                            required
+                            > 
+                        </mat-form-field>
+                    </p>
+                    <div *ngIf="lastNameNotFound"  class="error-style">
+                            Please enter your last name!
+                    </div>
+
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput
+                            type="email"
+                            ngModel
+                            name="userEmail"
+                            id="userEmail"
+                            placeholder="Enter your email"
+                            class="field"
+                            required
+                            > 
+                        </mat-form-field>
+                    </p>
+                    <div *ngIf="emailNotFound"  class="error-style">
+                            Please enter your email!
+                    </div>
+
+                    <div *ngIf="wrongEmailFormat"  class="error-style">
+                        Wrong email format! It should be like: name@email
+                    </div>
+
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label style="padding: 23px;">Enter your phone number</mat-label>
+                            <input matInput
+                            type="text"
+                            ngModel
+                            name="userPhoneNumber"
+                            id="userPhoneNumber"
+                            placeholder="Enter your phone number"
+                            class="field"
+                            > 
+                        </mat-form-field>
+                    </p>
+
+                    <div *ngIf="wrongPhoneNumberFormat"  class="error-style">
+                        Phone number should contain only digits!
+                    </div>
+
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Enter your password</mat-label>
+                            <input matInput
+                            type="password"
+                            ngModel
+                            name="userPassword"
+                            id="userPassword"
+                            placeholder="Enter your password"
+                            class="field"
+                            required
+                            >
+                        </mat-form-field>
+                    </p>
+                    <div *ngIf="passwordNotFound" class="error-style">
+                        Please enter your password!
+                    </div>
+                    <div *ngIf="shortPassword" class="error-style">
+                        Password should have at least 6 characters!
+                    </div>
+        
+                    <button type="Submit" class="rounded-2 w-100 btn-color">Sign-up </button>
+                </form> 
+        </div>
+    </div>
+
+<div class="content">
+    Already have an account? <a href="/authenticate">Log-in</a>
+</div>
