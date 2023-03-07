@@ -24,7 +24,7 @@ export class ShowProductDetails implements OnInit{
   showTable = false;
   pageNumber: number = 0;
   public productDetails: Product[] = []
-  displayedColumns: string[] = ['Id', 'Product Name', 'description', 'Product Discounted Price', 'Product Actual Price', 'Actions'];
+  displayedColumns: string[] = ['Id', 'Product Name', 'description', 'Product Discounted Price', 'Product Actual Price', 'Type', 'Actions'];
 
   constructor(private productService: ProductService,
     public imagesDialog: MatDialog,
