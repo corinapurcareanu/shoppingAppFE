@@ -59,6 +59,7 @@ export class AddProduct implements OnInit{
     if(addProductForm.value.productName !== "" && addProductForm.value.productActualPrice !== 0
     && addProductForm.value.productActualPrice !== null && addProductForm.value.type !== ""
     && this.imageNotFound === false) {
+      console.log(this.product.type)
       this.productService.addNewProduct(productFormData).subscribe({
       next: (response: any)=> {
               console.log(response);
@@ -70,7 +71,6 @@ export class AddProduct implements OnInit{
           }
         });
 
-        console.log(this.product.type)
       }
 
       if(addProductForm.value.productName === "") {

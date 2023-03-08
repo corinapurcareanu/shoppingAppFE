@@ -18,7 +18,7 @@
                     class="field"
                     [(ngModel)]="product.productName"
                     required
-                    > 
+                    >
                 </mat-form-field>
             </p>
             <div *ngIf="nameNotFound"  class="error-style">
@@ -35,7 +35,7 @@
                     placeholder="Enter product description"
                     class="field"
                     [(ngModel)]="product.productDescription"
-                    > 
+                    >
                 </mat-form-field>
             </p>
 
@@ -50,7 +50,7 @@
                     placeholder="Enter product discounted price"
                     class="field"
                     [(ngModel)]="product.productDiscountedPrice"
-                    > 
+                    >
                 </mat-form-field>
             </p>
 
@@ -66,15 +66,15 @@
                     class="field"
                     [(ngModel)]="product.productActualPrice"
                     required
-                    > 
+                    >
                 </mat-form-field>
             </p>
             <div *ngIf="priceNotFound"  class="error-style">
                 Please enter the product price!
             </div>
-            
+
             <p>
-         
+
                 <mat-form-field appearance="outline">
                     <mat-label>Choose a type</mat-label>
                     <select
@@ -100,6 +100,7 @@
                         <option value="Lip balm">Lip balm</option>
                         <option value="Nail polish">Nail polish</option>
                         <option value="Nail base">Nail base</option>
+                        <option value="Top coat">Top coat</option>
                         <option value="Make-up brushes">Make-up brushes</option>
                         <option value="Woman eau de parfume">Woman eau de parfume</option>
                         <option value="Woman eau de toalette">Woman eau de toalette</option>
@@ -134,7 +135,7 @@
                 Please choose the product type!
             </div>
 
-            <div class="dropzone" appDrag 
+            <div class="dropzone" appDrag
             (files)="fileDropped($event)">
                 <div class="text-wrapper centered">
                     Drag and drop your file or <a (click)="selectFile.click()" class="browse-button">browse</a> a file
