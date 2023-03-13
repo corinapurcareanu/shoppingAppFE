@@ -8,18 +8,14 @@ import { ProductService } from './_services/product.service/product.service';
 @Injectable({
   providedIn: 'root'
 })
-export class SearchResolveService implements Resolve<Product[]>{
+export class SearchResolveService implements Resolve<String>{
 
   constructor(private productService: ProductService) { }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product[]> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): String {
     const key = route.paramMap.get("searchkeyword");
-    console.log("key este:" + key);
-
-    if(key) {
-      return this.productService.getAllProducts(0, key);
-    } else {
-      return this.productService.getAllProducts(0); //sa afiseze altcv sau home
-    }
+    console.log(key);
+    
+    return key !== null ? key : "";
   }
 
 }

@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container">
          <!-- Large window size -->
          <div class="welcome">
@@ -48,9 +49,19 @@
                 </mat-grid-tile>
         </mat-grid-list>
 
-        <div class="text-center mt-5 mb-5" style="padding-bottom: 100px" *ngIf="showLoadButton">
-          <button type="button" mat-raised-button color="warn" (click)="loadMoreProduct()">
-                Load More
+        <div class="text-center mt-5 mb-5" style="padding-bottom: 100px;">
+          <button type="button" mat-icon-button (click)="PreviousPage()" *ngIf="showPreviousPageButton">
+               <mat-icon>
+                    keyboard_double_arrow_left
+                </mat-icon>
+         </button>
+         &nbsp;&nbsp;
+         <div class="current_page_number"> {{pageNumber}} </div>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" mat-icon-button (click)="NextPage()" *ngIf="showNextPageButton">
+                <mat-icon>
+                    keyboard_double_arrow_right
+                </mat-icon>
           </button>      
         </div>
 </div>

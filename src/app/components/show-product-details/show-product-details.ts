@@ -20,7 +20,8 @@ import { Router } from '@angular/router';
 export class ShowProductDetails implements OnInit{
 
   public str: string = "id01"
-  showLoadMoreProductButton = false;
+  showNextPageButton: boolean = false;
+  showPreviousPageButton:boolean = false;
   showTable = false;
   pageNumber: number = 0;
   public productDetails: Product[] = []
@@ -37,6 +38,11 @@ export class ShowProductDetails implements OnInit{
 
   public getAllProducts() {
     this.showTable = false;
+    if(this.pageNumber > 0){
+      this.showPreviousPageButton = true;
+    } else {
+      this.showPreviousPageButton = false;
+    }
     this.productService.getAllProducts(this.pageNumber)
     .pipe(
       map((x: Product[], i) => x.map((product: Product) => this.imageProcessingService.createImages(product)))
@@ -44,15 +50,16 @@ export class ShowProductDetails implements OnInit{
     .subscribe({
       next: (response: Product[])=> {
              console.log(response);
+             this.productDetails = []
              response.forEach(product =>
               this.productDetails.push(product)
               );
               this.showTable = true;
 
               if(response.length == 12) {
-                this.showLoadMoreProductButton = true;
+                this.showNextPageButton = true;
               } else{
-                this.showLoadMoreProductButton = false;
+                this.showNextPageButton = false;
               }
             //  this.productDetails = response;
          },
@@ -81,10 +88,15 @@ export class ShowProductDetails implements OnInit{
     this.router.navigate(['/add-product', {productId: productId}])
   }
 
-  loadMoreProducts() {
+  public NextPage() {
     this.pageNumber = this.pageNumber + 1;
     this.getAllProducts();
-  }
+   }
+  
+   public PreviousPage() {
+    this.pageNumber = this.pageNumber - 1;
+    this.getAllProducts();
+   }
 
   logElement(element: any) {
     console.log(element);

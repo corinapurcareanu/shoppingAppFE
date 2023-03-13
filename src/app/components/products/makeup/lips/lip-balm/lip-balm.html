@@ -6,3 +6,66 @@
         Say goodbye to dry, chapped lips with our range of lip balms. Our formulas are designed to provide long-lasting hydration, while also protecting your lips from the elements. Plus, our range of scents and flavors make it easy to find the perfect product for you, whether you're looking for something sweet or refreshing.
     </div>
 </div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="container">
+        <mat-grid-list cols="4" rowHeight="3:5" gutterSize="10" class="products">
+                <mat-grid-tile *ngFor="let p of productDetails">
+                        <div class="row p-5">
+                                <div class>
+                                        <img [src]="p.productImages[0].url" class="home-page-product-image"> 
+                                </div>
+                           <div class="text-center name-position"> 
+                                <p><b>{{p.productName}}</b></p> 
+                           </div>
+                           <div class="price-position text-center" *ngIf="p.productDiscountedPrice !== 0 && p.productDiscountedPrice !== null"> 
+                                <p><b>${{p.productDiscountedPrice}}</b> &nbsp; <b style="text-decoration: line-through;">${{p.productActualPrice}}</b></p> 
+                           </div>
+                           <div class="price-position text-center" *ngIf="p.productDiscountedPrice === 0 || p.productDiscountedPrice === null"> 
+                                <p><b>${{p.productActualPrice}}</b></p> 
+                           </div>
+                           <div class="text-center btn-position"> 
+                                <button type="button" class="rounded-2 btn-color" style="width: 80%" (click)="showProductDetails(p.id)">View </button>
+                           </div>
+                        </div>
+                </mat-grid-tile>
+        </mat-grid-list>
+
+           <!-- Small window size -->
+           <mat-grid-list cols="2" rowHeight="3:5" gutterSize="10" class="small-products">
+                <mat-grid-tile *ngFor="let p of productDetails">
+                        <div class="row p-5">
+                                <div class>
+                                        <img [src]="p.productImages[0].url" class="home-page-product-image"> 
+                                </div>
+                           <div class="text-center name-position"> 
+                                <p><b>{{p.productName}}</b></p> 
+                           </div>
+                           <div class="price-position text-center" *ngIf="p.productDiscountedPrice !== 0 && p.productDiscountedPrice !== null"> 
+                                <p><b>${{p.productDiscountedPrice}}</b> &nbsp; <b style="text-decoration: line-through;">${{p.productActualPrice}}</b></p> 
+                           </div>
+                           <div class="price-position text-center" *ngIf="p.productDiscountedPrice === 0 || p.productDiscountedPrice === null"> 
+                                <p><b>${{p.productActualPrice}}</b></p> 
+                           </div>
+                           <div class="text-center btn-position"> 
+                                <button type="button" class="rounded-2 btn-color" style="width: 80%" (click)="showProductDetails(p.id)">View </button>
+                           </div>
+                        </div>
+                </mat-grid-tile>
+        </mat-grid-list>
+
+        <div class="text-center mt-5 mb-5" style="padding-bottom: 100px;">
+          <button type="button" mat-icon-button (click)="PreviousPage()" *ngIf="showPreviousPageButton">
+               <mat-icon>
+                    keyboard_double_arrow_left
+                </mat-icon>
+         </button>
+         &nbsp;&nbsp;
+         <div class="current_page_number" *ngIf="showPageNumber"> {{pageNumber}} </div>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" mat-icon-button (click)="NextPage()" *ngIf="showNextPageButton">
+                <mat-icon>
+                    keyboard_double_arrow_right
+                </mat-icon>
+          </button>      
+        </div>
+</div>

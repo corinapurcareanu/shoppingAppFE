@@ -74,6 +74,7 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
 import { SearchView } from './components/search-view/search-view';
 import { SearchResolveService } from './search-resolve.service';
 import { CartComponent } from './components/cart/cart.component';
+import { AccessForbidden } from './components/acces.forbidden/access';
 
 
 const routes: Routes = [
@@ -93,6 +94,11 @@ const routes: Routes = [
     component: SignUp,
   },
   {
+    path: 'accessForbidden',
+    pathMatch: 'full',
+    component: AccessForbidden,
+  },
+  {
     path: 'add-product',
     pathMatch: 'full',
     component: AddProduct, canActivate:[AuthGuard], data: {roles:['admin']} ,
@@ -105,7 +111,7 @@ const routes: Routes = [
     pathMatch: 'full',
     component: SearchView,
     resolve: {
-        products: SearchResolveService
+        key: SearchResolveService
       }
   },
   {
@@ -124,12 +130,12 @@ const routes: Routes = [
   {
     path: 'buyProduct',
     pathMatch: 'full',
-    component: BuyProductComponent,  canActivate:[AuthGuard], data: {roles:['admin', 'user']},
+    component: BuyProductComponent,  canActivate:[AuthGuard], data: {roles:['user']},
   },
   {
     path: 'cart',
     pathMatch: 'full',
-    component: CartComponent,  canActivate:[AuthGuard], data: {roles:['admin', 'user']},
+    component: CartComponent,  canActivate:[AuthGuard], data: {roles:['user']},
     resolve: {
       productDetails: ProductsResolverService
     }
@@ -137,7 +143,7 @@ const routes: Routes = [
   {
     path: 'orderConfirm',
     pathMatch: 'full',
-    component: OrderConfirmationComponent, canActivate:[AuthGuard], data: {roles:['admin', 'user']}
+    component: OrderConfirmationComponent, canActivate:[AuthGuard], data: {roles:['user']}
   },
   {
     path: 'make-up',

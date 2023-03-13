@@ -71,6 +71,12 @@ mat-grid-tile {
     font-family: 'Bradley Hand', cursive;
   }
 
+  .current_page_number{
+    display: inline;
+    font-size: 20px;
+    position: absolute;
+    margin-top: 10px;
+  }
 
   @media screen and (max-width: 800px) {
     .products {

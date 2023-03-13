@@ -90,6 +90,11 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
 import { SearchView } from './components/search-view/search-view';
 import { CartComponent } from './components/cart/cart.component';
 import {MatSelectModule} from '@angular/material/select';
+import { BodyCream } from './components/products/skincare/body-care/body-cream/body-cream';
+import { EyebrowsPencil } from './components/products/makeup/eyebrows/eyebrows-pencil/eyebrows-pencil';
+import { BodyOil } from './components/products/skincare/body-care/body-oil/body-oil';
+import { SearchResolveService } from './search-resolve.service';
+import { AccessForbidden } from './components/acces.forbidden/access';
 
 @NgModule({
   declarations: [
@@ -165,7 +170,11 @@ import {MatSelectModule} from '@angular/material/select';
     BuyProductComponent,
     OrderConfirmationComponent,
     SearchView,
-    CartComponent
+    CartComponent,
+    BodyCream,
+    EyebrowsPencil,
+    BodyOil,
+    AccessForbidden
   ],
   imports: [
     BrowserModule,
@@ -192,6 +201,7 @@ import {MatSelectModule} from '@angular/material/select';
       multi:true
     },
     UserService,
+    SearchResolveService,
     provideAnimations()
   ],
   bootstrap: [AppComponent,]

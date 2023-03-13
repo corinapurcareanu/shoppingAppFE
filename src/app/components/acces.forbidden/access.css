@@ -1,0 +1,11 @@
+ .container {
+    margin-top: 100px;
+  }
+
+  .welcome {
+    text-align: center;
+    font-weight: 600;
+    font-size: 150%;
+    font-family: 'Bradley Hand', cursive;
+    color: red;
+  }

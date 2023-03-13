@@ -26,6 +26,9 @@
                     <div *ngIf="nameNotFound"  class="error-style">
                             Please enter your username!
                     </div>
+                    <div *ngIf="duplicateUser"  class="error-style">
+                        Username already taken!
+                    </div>
                     <div *ngIf="shortName" class="error-style">
                         User name should have at least 6 characters!
                     </div>

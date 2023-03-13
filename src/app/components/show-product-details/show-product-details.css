@@ -32,4 +32,11 @@ table {
   border: 1px solid lightgrey;
 }
 
+.current_page_number{
+  display: inline;
+  font-size: 20px;
+  position: absolute;
+  margin-top: 10px;
+}
+
   @import '~@angular/material/prebuilt-themes/indigo-pink.css';

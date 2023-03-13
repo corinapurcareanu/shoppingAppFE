@@ -35,7 +35,7 @@ export class AuthGuard implements CanActivate {
     }
 
     console.log("a ajuns aiciicic")
-    this.router.navigate(['/authenticate']);
+    this.router.navigate(['/accessForbidden']);
     return false;
   }
   

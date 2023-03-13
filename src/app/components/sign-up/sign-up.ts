@@ -22,6 +22,7 @@ export class SignUp implements OnInit{
   wrongPhoneNumberFormat: boolean = false;
   shortPassword: boolean = false;
   shortName: boolean = false;
+  duplicateUser: boolean = false;
 
   constructor(private userSrvice: UserService,
     private userAuthService: UserAuthComponent,
@@ -54,6 +55,7 @@ signUp(signUpForm: NgForm) {
     this.wrongPhoneNumberFormat= false;
     this.shortPassword = false;
     this.shortName = false;
+    this.duplicateUser = false;
 
     if(signUpForm.value.userName != "" && signUpForm.value.userFirstName != "" && 
     signUpForm.value.userLastName != "" && signUpForm.value.userEmail != "" &&
@@ -63,10 +65,15 @@ signUp(signUpForm: NgForm) {
     && this.checkDigits(signUpForm.value.userPhoneNumber) == true)) && signUpForm.value.userName.length > 6) {
       this.userSrvice.signUp(signUpForm.value).subscribe({
       next: (response: any)=> {
+              console.log(response);
               this.router.navigate(['/authenticate']);
+             signUpForm.reset();
           },
           error: (error)=> {
               console.log(error);
+              if(error.error === null) {
+                this.duplicateUser = true;
+              }
           }
         });
     }

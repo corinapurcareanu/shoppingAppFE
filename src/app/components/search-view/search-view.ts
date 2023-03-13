@@ -22,7 +22,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SearchView implements OnInit{
   pageNumber: number = 0; //nu e corect, trb sa le extrag altfel 
 
-  products: Product[] = [];
+  // products: Product[] = [];
+  key: string = "";
+  showNextPageButton: boolean = false;
+  showPreviousPageButton:boolean = false;
+  showPageNumber:boolean = true;
+
+  productsNotFound: boolean = false;
 
   productDetails: Product[] = [];
 
@@ -36,14 +42,20 @@ export class SearchView implements OnInit{
   }
   
   ngOnInit(): void {
-    this.products = this.activatedRoute.snapshot.data['products'];
-    console.log(this.products); //nu apare nr corect de produse
-    this.getAllProducts();
+    this.activatedRoute.data.subscribe(data => {
+      this.key = data['key'];
+      this.getAllProducts();
+    });
   }
 
   public getAllProducts() {
+      if(this.pageNumber > 0){
+        this.showPreviousPageButton = true;
+      } else {
+        this.showPreviousPageButton = false;
+      }
 
-    const products: Observable<Product[]> = of(this.products);
+    const products: Observable<Product[]> = this.productService.getAllProducts(this.pageNumber, this.key);
 
     products
     .pipe(
@@ -53,11 +65,19 @@ export class SearchView implements OnInit{
       next: (response: Product[])=> {
              console.log(response);
              if(response.length == 12) {
-              this.showLoadButton = true;
+              this.showNextPageButton = true;
              } else {
-              this.showLoadButton = false;
+              this.showNextPageButton = false;
+              if(this.pageNumber === 0) {
+                this.showPageNumber = false;
+              }
              }
+             this.productDetails = []
              response.forEach(p => this.productDetails.push(p));
+             if(this.productDetails.length === 0 && this.pageNumber === 0) {
+              this.productsNotFound = true;
+            }
+             console.log(this.productDetails.length)
             //  this.productDetails = response;
          },
          error: (error: HttpErrorResponse)=> {
@@ -70,8 +90,13 @@ export class SearchView implements OnInit{
     this.router.navigate(['/view-product-details', {productId: productId}])
    }
   
-   public loadMoreProduct() {
+   public NextPage() {
     this.pageNumber = this.pageNumber + 1;
+    this.getAllProducts();
+   }
+  
+   public PreviousPage() {
+    this.pageNumber = this.pageNumber - 1;
     this.getAllProducts();
    }
 }

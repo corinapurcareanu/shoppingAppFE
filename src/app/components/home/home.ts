@@ -23,7 +23,8 @@ export class Home implements OnInit {
 
   productDetails: Product[] = [];
 
-  showLoadButton: boolean = false;
+  showNextPageButton: boolean = false;
+  showPreviousPageButton:boolean = false;
 
   constructor(public userAuthService: UserAuthComponent,
     private productService: ProductService,
@@ -41,6 +42,11 @@ export class Home implements OnInit {
  }
 
  public getAllProducts() {
+  if(this.pageNumber > 0){
+    this.showPreviousPageButton = true;
+  } else {
+    this.showPreviousPageButton = false;
+  }
   this.productService.getAllProducts(this.pageNumber)
   .pipe(
     map((x: Product[], i) => x.map((product: Product) => this.imageProcessingService.createImages(product)))
@@ -49,10 +55,11 @@ export class Home implements OnInit {
     next: (response: Product[])=> {
            console.log(response);
            if(response.length == 12) {
-            this.showLoadButton = true;
+            this.showNextPageButton = true;
            } else {
-            this.showLoadButton = false;
+            this.showNextPageButton = false;
            }
+           this.productDetails = []
            response.forEach(p => this.productDetails.push(p));
           //  this.productDetails = response;
        },
@@ -66,8 +73,13 @@ export class Home implements OnInit {
   this.router.navigate(['/view-product-details', {productId: productId}])
  }
 
- public loadMoreProduct() {
+ public NextPage() {
   this.pageNumber = this.pageNumber + 1;
+  this.getAllProducts();
+ }
+
+ public PreviousPage() {
+  this.pageNumber = this.pageNumber - 1;
   this.getAllProducts();
  }
 

@@ -34,7 +34,7 @@
           </b>
          </div>
 
-         <div class="mt-3" *ngIf="product.productDiscountedPrice === 0 && product.productDiscountedPrice === null"> >
+         <div class="mt-3" *ngIf="product.productDiscountedPrice === 0 || product.productDiscountedPrice === null">
           <b>
             ${{product.productActualPrice}}
           </b>
