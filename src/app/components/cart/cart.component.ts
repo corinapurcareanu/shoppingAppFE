@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/_services/cart-service/cart.service';
 import { ProductService } from 'src/app/_services/product.service/product.service';
 
 @Component({
@@ -11,27 +12,14 @@ import { ProductService } from 'src/app/_services/product.service/product.servic
 export class CartComponent implements OnInit{
 
   displayedColumns: string[] = ['Name', 'description', 'Single Product Price', 'Total Price', 'Quantity', 'Action']
-  cartDetails : any[] = [];
 
   constructor(private productService: ProductService,
+    public cartService: CartService,
     private router: Router) {}
 
   ngOnInit(): void {
-    this.getCartDetails();
-  }
-
-  getCartDetails() {
-    this.productService.getCartDetails()
-    .subscribe({
-      next: (response: any)=> {
-             console.log(response);
-             this.cartDetails = response;
-             console.log(this.cartDetails);
-         },
-         error: (error: HttpErrorResponse)=> {
-             console.log(error);
-         }
-       });
+    this.cartService.getCartDetails();
+    console.log( this.cartService.cartDetails);
   }
 
   checkout() {
@@ -39,18 +27,15 @@ export class CartComponent implements OnInit{
   }
 
   delete(cartId : number) {
-    this.productService.deleteCartItem(cartId).subscribe({
-      next: (response) => {
-        console.log(response);
-        this.getCartDetails();
-      },
-      error: (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    })
+    this.cartService.delete(cartId);
   }
 
   getTotalPrice(price: number, quantity: number) {
     return price * quantity;
+  }
+
+  updatedQuantity(productId: number | null, increase: boolean) {
+    console.log("update " + productId)
+    this.cartService.updatedQuantity(productId, increase);
   }
 }

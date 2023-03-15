@@ -34,3 +34,15 @@ mat-form-field {
     padding: 10px;
     color: red;
 }
+
+table {
+    display:table;
+}
+
+@media screen and (max-width: 750px) {
+    .table {
+      display: none;
+      visibility: hidden;
+    }
+
+}

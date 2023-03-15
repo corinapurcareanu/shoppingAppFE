@@ -4,6 +4,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserService } from 'src/app/_services/user.service/user.service';
 import { UserAuthComponent } from 'src/app/_services/user.auth/user.auth/user.auth.component';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/_services/cart-service/cart.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @UntilDestroy()
 @Component({
@@ -20,6 +22,7 @@ export class Login implements OnInit{
   
   constructor(private userSrvice: UserService,
     private userAuthService: UserAuthComponent,
+    private cartService: CartService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -36,13 +39,20 @@ export class Login implements OnInit{
 
       this.userSrvice.login(loginForm.value).subscribe({
       next: (response: any)=> {
-              console.log(response);
+              // console.log(response);
               this.userAuthService.setRoles(response.user.role);
               this.userAuthService.setName(response.user.userFirstName);
               this.userAuthService.setToken(response.jwtToken);
               console.log(response.jwtToken)
-
-              this.router.navigate(['']);
+              this.cartService.reloadCart().subscribe({
+                next: () => {
+                  console.log("cart details retrieved");
+                  this.router.navigate(['']);
+                },
+                error: (error: HttpErrorResponse)=> {
+                  console.log(error);
+                }
+              });
           },
           error: (error)=> {
               console.log(error);

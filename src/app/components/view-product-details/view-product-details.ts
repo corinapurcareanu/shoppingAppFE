@@ -9,6 +9,8 @@ import { FileHandle } from 'src/app/_model/file-handle.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Product } from 'src/app/_model/product.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Header } from '../header/header';
+import { CartService } from 'src/app/_services/cart-service/cart.service';
 
 @UntilDestroy()
 @Component({
@@ -23,7 +25,7 @@ export class ProductViewDetails implements OnInit{
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    private productService: ProductService){
+    private cartService: CartService){
 
   }
   
@@ -39,14 +41,6 @@ export class ProductViewDetails implements OnInit{
 
   addToCart(productId: number | null) {
     console.log("product" + productId);
-    this.productService.addToCart(productId)
-    .subscribe({
-      next: (response)=> {
-             console.log(response);
-         },
-         error: (error: HttpErrorResponse)=> {
-             console.log(error);
-         }
-       });
+    this.cartService.addToCart(productId)
   }
 }

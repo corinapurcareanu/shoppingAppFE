@@ -341,7 +341,16 @@
     background-color: transparent;
   }
 
-
+  .cart_count {
+    display: inline;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    padding-left: 3px;
+    padding-right: 3px;
+    left: 30px;
+    font-size: 12px;
+  }
 
   @media screen and (max-width: 950px) {
     .products {
@@ -366,9 +375,5 @@
       display: inline-block;
       visibility: visible;
     }
-
-    /* td {
-      width: 33.33%;
-    } */
   }
  

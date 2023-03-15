@@ -16,7 +16,6 @@ export class ProductService {
   constructor(private httpclient : HttpClient) { }
 
   public addNewProduct(product: FormData) {
-    console.log(this.httpclient.post(this.PATH_OF_API + "/addNewProduct", product))
     return this.httpclient.post(this.PATH_OF_API + "/addNewProduct", product)
   }
 
@@ -47,6 +46,10 @@ export class ProductService {
 
   public addToCart(productId: number | null) {
     return this.httpclient.get( this.PATH_OF_API + "/addToCart/" + productId)
+  }
+
+  public updatedQuantityInCart(productId: number | null, increase : boolean) {
+    return this.httpclient.get( this.PATH_OF_API + "/updatedQuantityInCart/" + productId + "/" + increase);
   }
 
   public getCartDetails() {

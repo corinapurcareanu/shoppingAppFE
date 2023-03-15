@@ -99,7 +99,7 @@
                         <tr *ngFor="let element of orderInput.cart">
                             <td> {{element.product.productName}} </td>
                             <td> ${{element.product.productDiscountedPrice}} </td>
-                            <td> ${{element.quantity}} </td>
+                            <td> {{element.quantity}} </td>
                             <td>
                                 ${{getCalculatedTotal(element.quantity, element.product.productDiscountedPrice)}}
                             </td>

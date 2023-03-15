@@ -15,9 +15,21 @@ export class AppComponent implements OnInit{
 
   }
   ngOnInit() {
-    window.addEventListener('beforeunload', () => {
-      this.logout();
-    });
+    // window.addEventListener('beforeunload', (event) => {
+    //   let targetUrl = null;
+    //   if(event.target!= null){
+    //   targetUrl = (event.target as Window).location.href;
+    //   }
+    //   const currentUrl = window.location.href;
+      
+    //   // check if the user is navigating away from your app
+    //   if (targetUrl !== currentUrl) {
+    //     return;
+    //   }
+    
+    //   // if the user is still within your app, log them out
+    //   this.logout();
+    // });
   }
 
   public logout() {

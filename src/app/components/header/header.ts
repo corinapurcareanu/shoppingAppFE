@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/_services/cart-service/cart.service';
 import { ProductService } from 'src/app/_services/product.service/product.service';
 import { UserAuthComponent } from 'src/app/_services/user.auth/user.auth/user.auth.component';
 
@@ -13,13 +15,22 @@ export class Header implements OnInit {
 
   pageNumber: number = 0;
   productDetails = [];
+  public cartCount = 0;
+  private cart: any[] = []
 
   constructor(private userAuthService: UserAuthComponent,
     public router: Router,
-    private productService: ProductService) {
+    private cartService: CartService) {
    }
 
   ngOnInit(): void {
+   // Subscribe to cart data changes
+   //this.cartService.getCartDetails();
+   this.cartService.cartData$.subscribe(cartData => {
+    // Update cart count
+    console.log(cartData);
+    this.cartCount = cartData.length;
+  });
   }
 
   public isLoggedIn() : boolean {
@@ -28,6 +39,7 @@ export class Header implements OnInit {
 
   public logout() {
     this.userAuthService.clear();
+    this.cartCount = 0;
     this.router.navigate(['']);
   }
 

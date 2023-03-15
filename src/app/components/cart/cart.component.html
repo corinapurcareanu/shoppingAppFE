@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class=" mt-5">
-    <table mat-table [dataSource]="cartDetails" class="mat-elevation-z8">
+    <table mat-table [dataSource]="cartService.cartDetails" class="mat-elevation-z8">
         <ng-container matColumnDef="Name">
           <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Name </b></th>
           <td mat-cell *matCellDef="let element" class="text-center"> {{element.product.productName}} </td>
@@ -18,7 +18,7 @@
                 <div style="text-decoration:line-through;"> ${{element.product.productActualPrice}}</div>
                 <div> ${{element.product.productDiscountedPrice}}</div>
               </div>
-              <div *ngIf="element.product.productDiscountedPrice === 0 && element.product.productDiscountedPrice === null"> 
+              <div *ngIf="element.product.productDiscountedPrice === 0 || element.product.productDiscountedPrice === null"> 
                 ${{element.product.productActualPrice}}
               </div>
             </td>
@@ -31,7 +31,7 @@
                 <div style="text-decoration:line-through;"> ${{getTotalPrice(element.product.productActualPrice, element.quantity)}}</div>
                 <div> ${{getTotalPrice(element.product.productDiscountedPrice, element.quantity)}}</div>
               </div>
-              <div *ngIf="element.product.productDiscountedPrice === 0 && element.product.productDiscountedPrice === null"> 
+              <div *ngIf="element.product.productDiscountedPrice === 0 || element.product.productDiscountedPrice === null"> 
                 ${{getTotalPrice(element.product.productActualPrice, element.quantity)}}
               </div>
             </td>
@@ -39,13 +39,21 @@
 
           <ng-container matColumnDef="Quantity">
             <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Quantity </b> </th>
-            <td mat-cell *matCellDef="let element" class="text-center"> {{element.quantity}} </td>
+            <td mat-cell *matCellDef="let element" class="text-center">
+              <button class="quantity-btn" (click)="updatedQuantity(element.product.id, false)">
+                -
+               </button>
+               {{element.quantity}}
+              <button class="quantity-btn" (click)="updatedQuantity(element.product.id, true)">
+               +
+              </button>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Action </b> </th>
             <td mat-cell *matCellDef="let element" class="text-center"> 
-              <button mat-icon-button color="warn" (click)="delete(element.id)">
+              <button mat-icon-button color="warn" (click)="delete(element)">
                 <mat-icon>
                   delete
                 </mat-icon>
