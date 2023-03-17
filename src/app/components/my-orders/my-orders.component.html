@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div style="margin-top: 100px;margin-bottom: 100px;">
+    <table mat-table [dataSource]="myOrderDetails" class="mat-elevation-z8">
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Id </b></th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Order Details">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Order Details </b></th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+                <button class="btn-color" (click)="openModal(element.id)">
+                    See products
+                </button>
+
+                <div id="id01-{{element.id}}" class="w3-modal">
+                    <div class="w3-modal-content" style="max-width: 600px">
+                      <div class="w3-container w3-modal-conten">
+                        <span (click)="closeModal(element.id)" class="w3-button w3-display-topright">&times;</span>
+                        <div class="modal-margin">
+                            <table mat-table [dataSource]="element.products" class="mat-elevation-z8">
+                                <ng-container matColumnDef="Product Name">
+                                    <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Product Name </b></th>
+                                    <td mat-cell *matCellDef="let el" class="text-center"> {{el.product.productName}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="Price">
+                                    <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Price </b></th>
+                                    <td mat-cell *matCellDef="let el" class="text-center">
+                                        <div class="mt-3" *ngIf="el.product.productDiscountedPrice !== 0 && el.product.productDiscountedPrice !== null">
+                                            <span>
+                                              ${{el.product.productDiscountedPrice}}
+                                            </span>
+                                            &nbsp;
+                                            <span style="text-decoration: line-through;">
+                                              ${{el.product.productActualPrice}}
+                                            </span>
+                                           </div>
+                                  
+                                           <div class="mt-3" *ngIf="el.product.productDiscountedPrice === 0 || el.product.productDiscountedPrice === null">
+                                            <span>
+                                              ${{el.product.productActualPrice}}
+                                            </span>
+                                        </div>
+                                    </td>
+
+                                <ng-container matColumnDef="Quantity">
+                                    <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Quantity </b></th>
+                                    <td mat-cell *matCellDef="let el" class="text-center"> {{el.quantity}} </td>
+                                </ng-container>
+                                </ng-container>
+
+                                  <tr mat-header-row *matHeaderRowDef="displayedModalColumns"></tr>
+                                  <tr mat-row *matRowDef="let row; columns: displayedModalColumns;"></tr>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Order Amount">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> <b>Order Amount </b></th>
+            <td mat-cell *matCellDef="let element" class="text-center"> {{element.orderAmount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Date Placed">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> <b>Date Placed</b></th>
+            <td mat-cell *matCellDef="let element" class="text-center"> {{element.orderDatePlaced}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Status </b></th>
+            <td mat-cell *matCellDef="let element" class="text-center"> {{element.orderStatus}} </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>

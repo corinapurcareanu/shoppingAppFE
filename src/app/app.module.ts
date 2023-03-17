@@ -95,7 +95,9 @@ import { EyebrowsPencil } from './components/products/makeup/eyebrows/eyebrows-p
 import { BodyOil } from './components/products/skincare/body-care/body-oil/body-oil';
 import { SearchResolveService } from './search-resolve.service';
 import { AccessForbidden } from './components/acces.forbidden/access';
-
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle'
 @NgModule({
   declarations: [
     AppComponent,
@@ -174,7 +176,9 @@ import { AccessForbidden } from './components/acces.forbidden/access';
     BodyCream,
     EyebrowsPencil,
     BodyOil,
-    AccessForbidden
+    AccessForbidden,
+    MyOrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -191,7 +195,8 @@ import { AccessForbidden } from './components/acces.forbidden/access';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule
   ],
   providers: [
     AuthGuard,

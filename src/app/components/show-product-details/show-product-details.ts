@@ -22,6 +22,7 @@ export class ShowProductDetails implements OnInit{
   public str: string = "id01"
   showNextPageButton: boolean = false;
   showPreviousPageButton:boolean = false;
+  showPageNumber:boolean = true;
   showTable = false;
   pageNumber: number = 0;
   public productDetails: Product[] = []
@@ -36,14 +37,14 @@ export class ShowProductDetails implements OnInit{
     this.getAllProducts();
   }
 
-  public getAllProducts() {
+  public getAllProducts(key: string = "") {
     this.showTable = false;
     if(this.pageNumber > 0){
       this.showPreviousPageButton = true;
     } else {
       this.showPreviousPageButton = false;
     }
-    this.productService.getAllProducts(this.pageNumber)
+    this.productService.getAllProducts(this.pageNumber, key)
     .pipe(
       map((x: Product[], i) => x.map((product: Product) => this.imageProcessingService.createImages(product)))
     )
@@ -60,7 +61,12 @@ export class ShowProductDetails implements OnInit{
                 this.showNextPageButton = true;
               } else{
                 this.showNextPageButton = false;
+
+                if(this.pageNumber === 0) {
+                  this.showPageNumber = false;
+                }
               }
+              
             //  this.productDetails = response;
          },
          error: (error: HttpErrorResponse)=> {
@@ -71,6 +77,7 @@ export class ShowProductDetails implements OnInit{
 
    deleteProduct(productId: number) {
     this.productDetails = []
+    console.log(productId)
     this.productService.deleteProduct(productId).subscribe({
       next: (response)=> {
              console.log(response);
@@ -116,4 +123,22 @@ export class ShowProductDetails implements OnInit{
     }
   }
 
+  openConfirmationModal(id: any) {
+    const modal = document.getElementById(`id02-${id}`);
+    if (modal) {
+      modal.style.display = "block";
+    }
+  }
+
+  closeConfirmationModal(id: any) {
+    const modal = document.getElementById(`id02-${id}`);
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
+  
+  searchByKeyword(searchkeyword : NgForm) {
+    const key : string = searchkeyword.value.searchKey;
+    this.getAllProducts(key);
+  }
 }

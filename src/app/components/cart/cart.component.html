@@ -1,5 +1,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div class=" mt-5">
+<div class=" mt-5"  *ngIf="cartService.cartDetails.length != 0">
     <table mat-table [dataSource]="cartService.cartDetails" class="mat-elevation-z8">
         <ng-container matColumnDef="Name">
           <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Name </b></th>
@@ -67,4 +67,18 @@
 <div align="right" class="mb-3 mt-3">
   <button (click)="checkout()" class="btn-color">Checkout</button>
 </div>
+</div>
+
+<div class=" mt-5"  *ngIf="cartService.cartDetails.length == 0" style="text-align: center;">
+  <div class="welcome">
+    <h1>
+      Your cart is empty!
+    </h1>
+  </div>
+  <div>
+    <img  class="empty-cart-img" src="https://cdn2.iconfinder.com/data/icons/outline-web-application-1/20/cart-512.png">
+  </div>
+  <div class="mb-3 mt-3">
+      <button class="btn-color" routerLink="/">Shop now!</button>
+  </div>
 </div>

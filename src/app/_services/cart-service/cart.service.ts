@@ -1,5 +1,6 @@
 import { HttpBackend, HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { OrderInput } from 'src/app/_model/order.input.model';
 import { Product } from 'src/app/_model/product.model';
@@ -13,7 +14,8 @@ export class CartService {
   cartData$ = this.cartData.asObservable();
   public cartDetails : any[] = [];
 
-constructor(private productService: ProductService){
+constructor(private productService: ProductService,
+  private router: Router){
   const cart = localStorage.getItem('cart');
   if (cart) {
     this.cartData.next(JSON.parse(cart));
@@ -159,5 +161,22 @@ constructor(private productService: ProductService){
         localStorage.setItem('cart', JSON.stringify(this.cartData.value));
       })
     );
+  }
+
+  placeOrder(orderInput : OrderInput) {
+    this.productService.placeOrder(orderInput).subscribe({
+      next: (response: any)=> {
+        console.log(response);
+        const currentCartData = this.cartData.value;
+        currentCartData.splice(0, currentCartData.length);
+        this.cartData.next(currentCartData);
+        console.log("current cart data actualizat: " + currentCartData);
+        localStorage.setItem('cart', JSON.stringify(currentCartData));
+        this.router.navigate(["/orderConfirm"]);
+    },
+    error: (error: any)=> {
+        console.log(error);
+    }
+  });
   }
 }

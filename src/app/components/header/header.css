@@ -14,10 +14,12 @@
   h5,
   h6 {
     margin: 8px 0;
+    font-weight: normal;
   }
 
   p {
     margin: 0;
+    font-weight: normal;
   }
 
 
@@ -33,33 +35,39 @@
     font-weight: 600;
     position: fixed;
     z-index: 1000; 
+    font-weight: normal;
   }
 
   table {
     width: 100%;
+    font-weight: normal;
   }
 
   .toolbar #user-logo {
     height: 40px;
     margin: 0px 10px;
     text-align: right;
+    font-weight: normal;
   }
 
   .toolbar #menu-logo {
     height: 40px;
     margin: 0px 10px;
+    font-weight: normal;
   }
 
   .toolbar #shopping-logo {
     height: 40px;
     margin: 0 10px;
     text-align: right;
+    font-weight: normal;
   }
 
   .toolbar #home-logo {
     height: 40px;
     margin: 0 10px;
     text-align: right;
+    font-weight: normal;
   }
 
   .toolbar #user-logo:hover,
@@ -69,6 +77,7 @@
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     cursor: pointer;
+    font-weight: normal;
   }
 
   .toolbar #shopping-logo-current,
@@ -78,11 +87,13 @@
     text-align: right;
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     cursor: pointer;
+    font-weight: normal;
   }
 
   .header-search {
     -webkit-box-flex: 10;
     flex: 10 0 0;
+    font-weight: normal;
     }
 
   .store {
@@ -91,14 +102,17 @@
     font-weight: 600;
     font-size: 150%;
     font-family: 'Bradley Hand', cursive;
+    font-weight: normal;
   }
 
   .products {
     display: inline;
+    font-weight: normal;
   }
 
   .products-small {
     display: inline;
+    font-weight: normal;
   }
 
   .search-bar {
@@ -111,6 +125,7 @@
     align-items: center;
     border-radius: 60px;
     padding: 2px 2x;
+    font-weight: normal;
   }
 
   .search-bar input {
@@ -119,6 +134,7 @@
     outline: none;
     margin-left: 10px;
     font-size: 16px;
+    font-weight: normal;
   }
 
   .search-bar button {
@@ -126,24 +142,20 @@
     border-radius: 50%;
     cursor: pointer;
     background-color: transparent;
+    font-weight: normal;
   }
 
   svg.material-icons {
     height: 24px;
     width: auto;
+    font-weight: normal;
   }
 
   svg.material-icons:not(:last-child) {
     margin-right: 8px;
+    font-weight: normal;
   }
 
-  svg#clouds {
-    position: fixed;
-    bottom: -160px;
-    left: -230px;
-    z-index: -10;
-    width: 1920px;
-  }
 
 /* small-dropdown Button */
 .dropbtn {
@@ -156,6 +168,7 @@
     height: 40px;
     margin: 0px 10px;
     text-align: right;
+    font-weight: normal;
   }
 
   .dropbtn:hover {
@@ -163,6 +176,7 @@
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     cursor: pointer;
+    font-weight: normal;
   }
 
   .dropbtn-current {
@@ -173,6 +187,7 @@
     color: white;
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     cursor: pointer;
+    font-weight: normal;
   }
 
   .admin-functions {
@@ -181,24 +196,8 @@
     background-color: transparent;
     border: transparent;
     font-size: 15px;
-  }
-
-  
-  .admin-functions:hover {
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-    cursor: pointer;
-  }
-
-  .admin-functions-current {
-    color: white;
-    padding: 7px;
-    background-color: transparent;
-    border: transparent;
-    font-size: 15px;
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-    cursor: pointer;
+    cursor:default;
+    font-weight: normal;
   }
 
     /* Links inside the small-dropdown */
@@ -214,6 +213,7 @@
     position: relative;
     display: none;
     visibility: hidden;
+    font-weight: normal;
   }
   
   /* small-dropdown Content (Hidden by Default) */
@@ -225,6 +225,7 @@
     color: black;
     background-color: white;
     min-width:max-content; 
+    font-weight: normal;
   }
   
   /* Change color of small-dropdown links on hover */
@@ -245,12 +246,14 @@
     border-radius: 6px;
     margin: 2px 2px;
     padding: 10px;
+    font-weight: normal;
   }
   
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
     position: relative;
     display: inline-block;
+    font-weight: normal;
   }
   
   /* Dropdown Content (Hidden by Default) */
@@ -262,7 +265,7 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     color: black;
-
+    font-weight: normal;
   }
   
   /* Links inside the dropdown */
@@ -271,6 +274,7 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    font-weight: normal;
   }
   
   /* Change color of dropdown links on hover */
@@ -290,6 +294,7 @@
     height: 40px;
     margin: 0px 10px;
     text-align: right;
+    font-weight: normal;
   }
 
   .dropbtn-small:hover {
@@ -297,6 +302,7 @@
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     cursor: pointer;
+    font-weight: normal;
   }
 
   .dropbtn-small-current {
@@ -308,6 +314,7 @@
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     cursor: pointer;
     font-weight: bold;
+    font-weight: normal;
   }
 
   .search-bar-small {
@@ -322,6 +329,7 @@
     padding: 2px 2x;
     display: none;
     visibility: hidden;
+    font-weight: normal;
   }
 
   .search-bar-small input {
@@ -332,6 +340,7 @@
     font-size: 16px;
     max-width: 20px;
     max-height: 25px;
+    font-weight: normal;
   }
 
   .search-bar-small button {
@@ -339,6 +348,7 @@
     border-radius: 50%;
     cursor: pointer;
     background-color: transparent;
+    font-weight: normal;
   }
 
   .cart_count {
@@ -350,6 +360,7 @@
     padding-right: 3px;
     left: 30px;
     font-size: 12px;
+    font-weight: normal;
   }
 
   @media screen and (max-width: 950px) {

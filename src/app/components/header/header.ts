@@ -24,10 +24,7 @@ export class Header implements OnInit {
    }
 
   ngOnInit(): void {
-   // Subscribe to cart data changes
-   //this.cartService.getCartDetails();
    this.cartService.cartData$.subscribe(cartData => {
-    // Update cart count
     console.log(cartData);
     this.cartCount = cartData.length;
   });

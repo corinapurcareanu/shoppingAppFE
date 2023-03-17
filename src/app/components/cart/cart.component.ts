@@ -26,8 +26,8 @@ export class CartComponent implements OnInit{
     this.router.navigate(['/buyProduct']);
   }
 
-  delete(cartId : number) {
-    this.cartService.delete(cartId);
+  delete(cartItem : any) {
+    this.cartService.delete(cartItem);
   }
 
   getTotalPrice(price: number, quantity: number) {

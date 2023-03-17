@@ -1,5 +1,7 @@
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MyOrderDetails } from 'src/app/_model/order.details';
 import { OrderInput } from 'src/app/_model/order.input.model';
 import { Product } from 'src/app/_model/product.model';
 
@@ -59,5 +61,17 @@ export class ProductService {
 
   public deleteCartItem(cartId: number) {
     return this.httpclient.delete( this.PATH_OF_API + "/deleteCartItem/" + cartId);
+  }
+
+  public getOrderDetails(): Observable<MyOrderDetails[]> {
+    return this.httpclient.get<MyOrderDetails[]>( this.PATH_OF_API + "/getOrderDetails");
+  }
+
+  public getAllOrderDetailsForAdmin(status: string): Observable<MyOrderDetails[]> {
+    return this.httpclient.get<MyOrderDetails[]>( this.PATH_OF_API + "/getAllOrderDetails/" + status);
+  }
+
+  public markAsDelivered(orderId : number) {
+    return this.httpclient.get( this.PATH_OF_API + "/markOrderAsDelivered/" + orderId);
   }
 }

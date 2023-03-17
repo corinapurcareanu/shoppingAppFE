@@ -25,6 +25,7 @@ export class ProductViewDetails implements OnInit{
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
+    private userAuthService: UserAuthComponent,
     private cartService: CartService){
 
   }
@@ -42,5 +43,42 @@ export class ProductViewDetails implements OnInit{
   addToCart(productId: number | null) {
     console.log("product" + productId);
     this.cartService.addToCart(productId)
+  }
+
+  public isAdmin() : boolean {
+    return this.userAuthService.isAdmin();
+  }
+
+  
+  public isLoggedIn() : boolean {
+    return this.userAuthService.isLoggedIn();
+  }
+
+  openModal(id: any) {
+    const modal = document.getElementById(`id01-${id}`);
+    if (modal) {
+      modal.style.display = "block";
+    }
+  }
+
+  closeModal(id: any) {
+    const modal = document.getElementById(`id01-${id}`);
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  openErrorModal(id: any) {
+    const modal = document.getElementById(`id02-${id}`);
+    if (modal) {
+      modal.style.display = "block";
+    }
+  }
+
+  closeErrorModal(id: any) {
+    const modal = document.getElementById(`id02-${id}`);
+    if (modal) {
+      modal.style.display = "none";
+    }
   }
 }

@@ -75,6 +75,8 @@ import { SearchView } from './components/search-view/search-view';
 import { SearchResolveService } from './search-resolve.service';
 import { CartComponent } from './components/cart/cart.component';
 import { AccessForbidden } from './components/acces.forbidden/access';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 
 const routes: Routes = [
@@ -144,6 +146,16 @@ const routes: Routes = [
     path: 'orderConfirm',
     pathMatch: 'full',
     component: OrderConfirmationComponent, canActivate:[AuthGuard], data: {roles:['user']}
+  },
+  {
+    path: 'myOrders',
+    pathMatch: 'full',
+    component: MyOrdersComponent, canActivate:[AuthGuard], data: {roles:['user']}
+  },
+  {
+    path: 'show-all-orders',
+    pathMatch: 'full',
+    component: OrderDetailsComponent, canActivate:[AuthGuard], data: {roles:['admin']}
   },
   {
     path: 'make-up',

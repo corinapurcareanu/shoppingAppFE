@@ -1,6 +1,19 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="mt-5 p-3">
+    <form  class="search-bar" #searchkeyword="ngForm" (ngSubmit)="searchByKeyword(searchkeyword)">
+      <input
+      ngModel
+      type="text"
+      placeholder="Find products"
+      name="searchKey"
+      id="searchKey">
+      <button type="submit">
+        <svg id="search-logo" xmlns="http://www.w3.org/2000/svg" width="17" height="27" fill="currentColor" class="bi bi-search" viewBox="0 0 16 18" id="IconChangeColor"> 
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" id="mainIconPathAttribute"></path>
+        </svg>
+      </button>
+    </form>
     <div *ngIf="showTable">
         <table mat-table [dataSource]="productDetails" class="mat-elevation-z8"> 
             <ng-container matColumnDef="Id" >
@@ -22,14 +35,14 @@
             <th mat-header-cell *matHeaderCellDef class="text-center"> <b>Product Discounted Price</b> </th>
             <td mat-cell *matCellDef="let element" class="text-center"> 
                 <div *ngIf="element.productDiscountedPrice !== 0 && element.productDiscountedPrice !== null"> 
-                    {{element.productDiscountedPrice}}
+                    ${{element.productDiscountedPrice}}
                 </div>
             </td>
             </ng-container>
         
             <ng-container matColumnDef="Product Actual Price">
             <th mat-header-cell *matHeaderCellDef class="text-center"> <b> Product Actual Price </b> </th>
-            <td mat-cell *matCellDef="let element" class="text-center"> {{element.productActualPrice}} </td>
+            <td mat-cell *matCellDef="let element" class="text-center"> ${{element.productActualPrice}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Type">
@@ -51,7 +64,7 @@
                       <div class="w3-modal-content">
                         <div class="w3-container w3-modal-conten">
                           <span (click)="closeModal(element.id)" class="w3-button w3-display-topright">&times;</span>
-                          <div class="mt-2">
+                          <div class="modal-margin">
                             <mat-grid-list cols="2" rowHeight="1:1" gutterSize="10">
                               <mat-grid-tile *ngFor="let file of element.productImages" class="images">
                                   <img [src]="file.url"  class="product-zoom-image">
@@ -67,11 +80,23 @@
                         edit  
                         </mat-icon>
                     </button>
-                    <button mat-icon-button color="warn" (click)="deleteProduct(element.id)">
+                    <button mat-icon-button color="warn" (click)="openConfirmationModal(element.id)">
                         <mat-icon>
                             delete  
                         </mat-icon>
                     </button>
+
+                    <div id="id02-{{element.id}}" class="w3-modal">
+                      <div class="w3-modal-content" style="max-width: 400px">
+                        <div class="w3-container w3-modal-conten">
+                          <div class="modal-margin">
+                            <div style="margin-bottom: 50px;">Are you sure you want to delete this product?</div>
+                            <button class="btn-style" style="background-color: blue;" (click)="closeConfirmationModal(element.id)">No, go back</button>
+                            <button class="btn-style" style="background-color: red;" (click)="deleteProduct(element.id); closeConfirmationModal(element.id)">Yes, delete it</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </td>
                 </ng-container>
 
@@ -87,7 +112,7 @@
             </mat-icon>
      </button>
      &nbsp;&nbsp;
-     <div class="current_page_number"> {{pageNumber}} </div>
+     <div class="current_page_number" *ngIf="showPageNumber"> {{pageNumber}} </div>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" mat-icon-button (click)="NextPage()" *ngIf="showNextPageButton">
             <mat-icon>

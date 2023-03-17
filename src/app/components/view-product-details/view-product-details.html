@@ -1,4 +1,6 @@
-<div class="container">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div clss="container" style="margin-top: 100px;margin-bottom: 100px;">
     <div class="row">
       <div class="col-6">
         <div class="card image-container">
@@ -40,7 +42,38 @@
           </b>
          </div>
         <div class="text-center"  style="padding-top: 300px">
-        <button class="btn-color" (click)="addToCart(product.id)">
+        <button class="btn-color" (click)="openModal(product.id); addToCart(product.id)" *ngIf="!isAdmin() &&  isLoggedIn()">
+          Add to cart
+        </button>
+
+        <div id="id01-{{product.id}}" class="w3-modal">
+          <div class="w3-modal-content" style="max-width: 600px">
+            <div class="w3-container w3-modal-conten">
+              <div class="modal-margin">
+                <div style="margin-bottom: 50px;"> Product added in cart! </div>
+                <button class="btn-style" style="background-color: #e0a991;" (click)="closeModal(product.id)">Continue Shopping</button>
+                <button class="btn-style" (click)="closeModal(product.id)" routerLink="/cart">Go to cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-color" (click)="openErrorModal(product.id);" *ngIf="!isLoggedIn()">
+          Add to cart
+        </button>
+
+        <div id="id02-{{product.id}}" class="w3-modal">
+          <div class="w3-modal-content" style="max-width: 600px">
+            <div class="w3-container w3-modal-conten">
+              <span (click)="closeErrorModal(product.id)" class="w3-button w3-display-topright">&times;</span>
+              <div class="modal-margin">
+                <div style="margin-bottom: 50px; font-size: 20px;"> Please <a href="/authenticate">log in</a> to add products to cart! </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-disabled" *ngIf="isAdmin()" disabled>
           Add to cart
         </button>
         </div>

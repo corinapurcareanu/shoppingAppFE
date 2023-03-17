@@ -98,10 +98,22 @@
                     <tbody class="tbody">
                         <tr *ngFor="let element of orderInput.cart">
                             <td> {{element.product.productName}} </td>
-                            <td> ${{element.product.productDiscountedPrice}} </td>
+                            <td> 
+                                <div *ngIf="element.product.productDiscountedPrice != 0 && element.product.productDiscountedPrice != null">
+                                    ${{element.product.productDiscountedPrice}}
+                                </div>
+                                <div *ngIf="element.product.productDiscountedPrice == 0 || element.product.productDiscountedPrice == null">
+                                    ${{element.product.productActualPrice}}
+                                </div> 
+                            </td>
                             <td> {{element.quantity}} </td>
                             <td>
-                                ${{getCalculatedTotal(element.quantity, element.product.productDiscountedPrice)}}
+                                <div *ngIf="element.product.productDiscountedPrice != 0 && element.product.productDiscountedPrice != null">
+                                    ${{getCalculatedTotal(element.quantity, element.product.productDiscountedPrice)}}
+                                </div>
+                                <div *ngIf="element.product.productDiscountedPrice == 0 || element.product.productDiscountedPrice == null">
+                                    ${{getCalculatedTotal(element.quantity, element.product.productActualPrice)}}
+                                </div> 
                             </td>
                         </tr>
                         <tr>

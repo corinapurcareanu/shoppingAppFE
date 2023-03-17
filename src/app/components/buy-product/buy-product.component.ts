@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderInput } from 'src/app/_model/order.input.model';
 import { Product } from 'src/app/_model/product.model';
+import { CartService } from 'src/app/_services/cart-service/cart.service';
 import { ProductService } from 'src/app/_services/product.service/product.service';
 
 @Component({
@@ -29,6 +30,7 @@ export class BuyProductComponent implements OnInit{
 
   constructor(private activatedRoute: ActivatedRoute,
     private productService: ProductService,
+    private cartService: CartService,
     private router: Router) {}
 
   ngOnInit(): void {
@@ -62,16 +64,7 @@ export class BuyProductComponent implements OnInit{
     && this.orderInput.orderContactNumber !== "" && this.checkDigits(this.orderInput.orderContactNumber) === true
     && (this.orderInput.orderAlternateContactNumber === "" || (this.orderInput.orderAlternateContactNumber !== ""
     && this.checkDigits(this.orderInput.orderAlternateContactNumber) === true))) {
-        this.productService.placeOrder(this.orderInput).subscribe({
-          next: (response: any)=> {
-            console.log(response);
-            orderForm.reset();
-            this.router.navigate(["/orderConfirm"]);
-        },
-        error: (error: any)=> {
-            console.log(error);
-        }
-      });
+      this.cartService.placeOrder(this.orderInput);
     }
 
     if(this.orderInput.orderFullName === "") {
@@ -109,7 +102,11 @@ export class BuyProductComponent implements OnInit{
 
     this.orderInput.cart.forEach(
       (c) => {
-        grandTotal = grandTotal + this.getCalculatedTotal(c.quantity, c.product.productDiscountedPrice);
+        if(c.product.productDiscountedPrice != 0 && c.product.productDiscountedPrice != null) {
+          grandTotal = grandTotal + this.getCalculatedTotal(c.quantity, c.product.productDiscountedPrice);
+        } else {
+          grandTotal = grandTotal + this.getCalculatedTotal(c.quantity, c.product.productActualPrice);
+        }
       }
     );
 
