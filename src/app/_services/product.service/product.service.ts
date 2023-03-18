@@ -22,7 +22,7 @@ export class ProductService {
   }
 
   public getAllProducts(number : number, searchkeyword: string ="") {
-    console.log("cheia e" + searchkeyword)
+    ("cheia e" + searchkeyword)
     return this.httpclient.get<Product[]>(this.PATH_OF_API + "/getAllProducts?pageNumber=" + number +"&searchKey=" + searchkeyword);
   }
 

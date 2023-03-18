@@ -22,17 +22,16 @@ export class AuthInterceptor implements HttpInterceptor {
 
         return next.handle(req).pipe(
             catchError((err: HttpResponse<any>) => {
-                console.log(err.status);
+                (err.status);
         
                 if (err.status === 401) {
-                    this.router.navigate(['/authenticate']);
+                    this.router.navigate(['/accessForbidden']);
                 } else if (err.status === 403) {
                     this.router.navigate(['/']);
                 } else {
                     throw new Error("Error");
                 }
                 
-                // Return an observable of the same type as the source observable
                 return of(err);
             })
         );

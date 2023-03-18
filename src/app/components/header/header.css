@@ -35,19 +35,18 @@
     font-weight: 600;
     position: fixed;
     z-index: 1000; 
-    font-weight: normal;
   }
 
   table {
     width: 100%;
-    font-weight: normal;
-  }
+  } 
 
   .toolbar #user-logo {
     height: 40px;
     margin: 0px 10px;
     text-align: right;
     font-weight: normal;
+  
   }
 
   .toolbar #menu-logo {
@@ -67,7 +66,7 @@
     height: 40px;
     margin: 0 10px;
     text-align: right;
-    font-weight: normal;
+  
   }
 
   .toolbar #user-logo:hover,
@@ -107,12 +106,10 @@
 
   .products {
     display: inline;
-    font-weight: normal;
   }
 
   .products-small {
     display: inline;
-    font-weight: normal;
   }
 
   .search-bar {
@@ -200,6 +197,17 @@
     font-weight: normal;
   }
 
+  .user-functions {
+    color: white;
+    padding: 7px;
+    background-color: transparent;
+    border: transparent;
+    font-size: 15px;
+    cursor:default;
+    font-weight: normal;
+    cursor: pointer;
+  }
+
     /* Links inside the small-dropdown */
     /* .dropbtn a {
         color: white;
@@ -213,7 +221,6 @@
     position: relative;
     display: none;
     visibility: hidden;
-    font-weight: normal;
   }
   
   /* small-dropdown Content (Hidden by Default) */
@@ -225,7 +232,6 @@
     color: black;
     background-color: white;
     min-width:max-content; 
-    font-weight: normal;
   }
   
   /* Change color of small-dropdown links on hover */
@@ -253,7 +259,6 @@
   .dropdown {
     position: relative;
     display: inline-block;
-    font-weight: normal;
   }
   
   /* Dropdown Content (Hidden by Default) */
@@ -265,7 +270,6 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     color: black;
-    font-weight: normal;
   }
   
   /* Links inside the dropdown */
@@ -274,7 +278,7 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    font-weight: normal;
+  
   }
   
   /* Change color of dropdown links on hover */
@@ -294,7 +298,7 @@
     height: 40px;
     margin: 0px 10px;
     text-align: right;
-    font-weight: normal;
+  
   }
 
   .dropbtn-small:hover {
@@ -302,7 +306,7 @@
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     cursor: pointer;
-    font-weight: normal;
+  
   }
 
   .dropbtn-small-current {
@@ -314,7 +318,7 @@
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     cursor: pointer;
     font-weight: bold;
-    font-weight: normal;
+  
   }
 
   .search-bar-small {

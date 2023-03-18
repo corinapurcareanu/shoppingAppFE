@@ -1,9 +1,12 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container mt-5">
     <div class="card p-5">
         <div class="row">
             <div class="col-6">
                 <form #orderForm="ngForm"
                 (ngSubmit)="placeOrder(orderForm)">
+                <h5>Complete your data</h5>
                 <p>
                     <mat-form-field appearance="outline">
                         <mat-label>Full name</mat-label>
@@ -78,14 +81,135 @@
                 <div *ngIf="wrongAlternatePhoneNumberFormat"  class="error-style">
                     Phone number should contain only digits!
                 </div>
+                <h5>Choose payment method</h5>
+                <div style="margin-bottom: 15px;">
+                    <div class="btn-tranfer" (click)="openModal()">
+                        <mat-icon style="position: absolute; margin-left: 50px">
+                            account_balance
+                        </mat-icon>
+                       <span style="margin-left: 80px"> Bank Transfer </span>
+                    </div>
+                </div>
+
+                <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content" style="max-width: 600px">
+                      <div class="w3-container w3-modal-conten">
+                        <span (click)="closeModal()" class="w3-button w3-display-topright">&times;</span>
+                        <div class="modal-margin">
+                            <form #orderForm="ngForm">
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Card Number</mat-label>
+                                    <input matInput
+                                    type="text"
+                                    ngModel
+                                    name="cardNumber"
+                                    id="cardNumber"
+                                    placeholder="Card Number"
+                                    class="field"
+                                    required
+                                    > 
+                                </mat-form-field>
+                            </p>
+
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Expire date</mat-label>
+                                    <input matInput
+                                    type="text"
+                                    ngModel
+                                    name="expireDate"
+                                    id="expireDate"
+                                    placeholder="Expire date"
+                                    class="field"
+                                    required
+                                    > 
+                                </mat-form-field>
+                            </p>
+
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>CVV</mat-label>
+                                    <input matInput
+                                    type="text"
+                                    ngModel
+                                    name="CVV"
+                                    id="CVV"
+                                    placeholder="CVV"
+                                    class="field"
+                                    required
+                                    > 
+                                </mat-form-field>
+                            </p>
+
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Iban transfer</mat-label>
+                                    <input matInput
+                                    type="text"
+                                    ngModel
+                                    name="iban"
+                                    id="iban"
+                                    placeholder="Iban transfer"
+                                    class="field"
+                                    required
+                                    > 
+                                </mat-form-field>
+                            </p>
+
+                            <div align="right">
+                                <button type="submit" class="btn-color" (click)="closeModal()">
+                                  Tranfer now
+                                </button>
+                            </div>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <paypal></paypal>
                 <div align="right">
                     <button type="submit" class="btn-color">
                       Place order 
                     </button>
                 </div>
+                <div *ngIf="!madePayment" class="error-style">
+                    Complete payment first!
+                </div>
                 </form>
             </div>
             <div class="col-6">
+                <h5>Delivery Method</h5>
+                <div>
+                    <form>
+                      <label>
+                        <input type="radio" name="deliveryOption" value="office" (change)="setDeliveryCost(0)">
+                        <div style="display: inline-block;"> 
+                          <mat-icon style="position: absolute;">store_mall_directory</mat-icon>
+                          <div style="margin-left: 25px;">Pickup from office - {{getDeliveryDays()}} Days - free</div>
+                        </div>
+                      </label><br>
+                      <label>
+                        <input type="radio" name="deliveryOption" value="postal" (change)="setDeliveryCost(2)">
+                        <div style="display: inline-block;">
+                          <mat-icon style="position: absolute;">local_post_office</mat-icon>
+                          <div style="margin-left: 25px;">Postal service - {{getDeliveryDays() + 3}} Days - 2$</div>
+                        </div>
+                      </label><br>
+                      <label>
+                        <input type="radio" name="deliveryOption" value="courier" (change)="setDeliveryCost(4)">
+                        <div style="display: inline-block;">
+                          <mat-icon style="position: absolute;">local_shipping</mat-icon>
+                          <div style="margin-left: 25px;">Courier service - {{getDeliveryDays() + 1}} Days - 4$</div>
+                        </div>
+                      </label><br>
+                    </form>
+                    <div *ngIf="deliveryMethodNotFound"  class="error-style">
+                        Please Choose a delivery Method
+                    </div>
+                </div>
+                <h5>Cart Summary</h5>
                 <table class="table">
                     <thead class="thead">
                         <tr>
@@ -116,6 +240,12 @@
                                 </div> 
                             </td>
                         </tr>
+                        <tr *ngIf="chosenDeliveryMethod">
+                            <td></td>
+                            <td></td>
+                            <td>Delivery Cost</td>
+                            <td> ${{orderInput.deliveryCost}} </td>
+                        </tr>
                         <tr>
                             <td></td>
                             <td></td>
@@ -123,7 +253,19 @@
                             <td> ${{getCalculatedGrandTotal()}} </td>
                         </tr>
                     </tbody>
-                </table>            
+                </table>
+                
+                <div *ngIf="notEnoughStock.length > 0" class="error-style">
+                    The  maximum quantity available for the following products is this:
+                    <br>
+                    <div *ngFor="let el of notEnoughStock">
+                        {{el.productName}} - {{el.quantity}}
+                    </div>
+                    <br>
+                    Your cart was updated to the maximum quantity available.
+                    <br>
+                    If you want to make any changes go back to <a href="/cart">your cart</a>.
+                </div>
             </div>
         </div>
     </div>

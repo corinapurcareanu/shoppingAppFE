@@ -5,5 +5,6 @@ export interface OrderInput {
     orderFullAddress: string;
     orderContactNumber: string;
     orderAlternateContactNumber: string;
+    deliveryCost: number;
     cart: any[];
 }

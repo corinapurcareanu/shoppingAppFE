@@ -58,7 +58,6 @@
                     <button class="authenticate" *ngIf = "!isLoggedIn()" routerLink="/authenticate">Log-in</button>
                     <button class="authenticate" *ngIf = "!isLoggedIn()" routerLink="/sign-up">Sign-up</button>
                     <button class="authenticate" *ngIf = "isLoggedIn()" (click)="logout()">Log-out</button>
-                    <button class="authenticate" *ngIf = "isLoggedIn() && !isAdmin()" routerLink="/myOrders">My Orders</button>
             </div>
         </div>
 
@@ -442,6 +441,7 @@
               </table>
               </div>
           </div>
+          <button class="user-functions" *ngIf = "isLoggedIn() && !isAdmin()" routerLink="/myOrders">My Orders</button>
         </td>
         <td>
         </td>

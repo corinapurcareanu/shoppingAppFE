@@ -43,8 +43,7 @@ checkDigits(str: string): boolean {
 }
 
 signUp(signUpForm: NgForm) {
-    console.log("Form is submitted")
-    console.log(signUpForm.value.userPassword.length)
+    (signUpForm.value.userPassword.length)
 
     this.nameNotFound= false;
     this.passwordNotFound = false;
@@ -65,12 +64,11 @@ signUp(signUpForm: NgForm) {
     && this.checkDigits(signUpForm.value.userPhoneNumber) == true)) && signUpForm.value.userName.length > 6) {
       this.userSrvice.signUp(signUpForm.value).subscribe({
       next: (response: any)=> {
-              console.log(response);
               this.router.navigate(['/authenticate']);
              signUpForm.reset();
           },
           error: (error)=> {
-              console.log(error);
+            console.log(error);
               if(error.error === null) {
                 this.duplicateUser = true;
               }

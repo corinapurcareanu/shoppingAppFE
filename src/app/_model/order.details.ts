@@ -9,6 +9,7 @@ export interface MyOrderDetails {
     orderStatus: string;
     orderAmount: number;
     orderDatePlaced: string;
+    deliveryMethod: string;
     products: Product[];
     user: any;
 }

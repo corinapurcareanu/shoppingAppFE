@@ -42,7 +42,7 @@
           </b>
          </div>
         <div class="text-center"  style="padding-top: 300px">
-        <button class="btn-color" (click)="openModal(product.id); addToCart(product.id)" *ngIf="!isAdmin() &&  isLoggedIn()">
+        <button class="btn-color" (click)="openModal(product.id); addToCart(product.id)" *ngIf="!isAdmin() &&  isLoggedIn() && product.productStock > 0">
           Add to cart
         </button>
 
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <button class="btn-color" (click)="openErrorModal(product.id);" *ngIf="!isLoggedIn()">
+        <button class="btn-color" (click)="openErrorModal(product.id);" *ngIf="!isLoggedIn()  && product.productStock > 0">
           Add to cart
         </button>
 
@@ -73,9 +73,12 @@
           </div>
         </div>
 
-        <button class="btn-disabled" *ngIf="isAdmin()" disabled>
+        <button class="btn-disabled" *ngIf="isAdmin()  && product.productStock > 0" disabled>
           Add to cart
         </button>
+        <div *ngIf="product.productStock <= 0">
+          <h5>Product out of stock!</h5>
+        </div>
         </div>
       </div> 
     </div>

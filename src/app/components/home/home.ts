@@ -37,7 +37,7 @@ export class Home implements OnInit {
  }
 
  public isLoggedIn() : boolean {
-  console.log(this.userAuthService.isLoggedIn())
+  (this.userAuthService.isLoggedIn())
    return this.userAuthService.isLoggedIn();
  }
 
@@ -53,7 +53,7 @@ export class Home implements OnInit {
   )
   .subscribe({
     next: (response: Product[])=> {
-           console.log(response);
+           (response);
            if(response.length == 12) {
             this.showNextPageButton = true;
            } else {
@@ -61,10 +61,9 @@ export class Home implements OnInit {
            }
            this.productDetails = []
            response.forEach(p => this.productDetails.push(p));
-          //  this.productDetails = response;
        },
        error: (error: HttpErrorResponse)=> {
-           console.log(error);
+           (error);
        }
      });
  }

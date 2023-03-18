@@ -22,7 +22,6 @@ constructor(private productService: ProductService,
   }
 }
   addToCart(productId: number | null) {
-    console.log("product" + productId);
     this.productService.addToCart(productId)
     .subscribe({
       next: (response)=> {
@@ -57,15 +56,10 @@ constructor(private productService: ProductService,
 
     while (index !==  -1) {
       currentCartData.splice(index, 1);
-  
-      // Update cart data
-      this.cartData.next(currentCartData);
 
-      console.log("current cart data actualizat: " + currentCartData);
+      this.cartData.next(currentCartData);
   
-      // Save cart data to local storage
       localStorage.setItem('cart', JSON.stringify(currentCartData));
-      console.log()
 
       index = currentCartData.findIndex(item => item === id);
     }
@@ -81,15 +75,12 @@ constructor(private productService: ProductService,
       }
     })
     
-    //sa vad cum sterg toate alea din cart;
   }
 
   updatedQuantity(productId: number | null, increase: boolean) {
-    console.log("update " + productId + " bool: " + increase);
     this.productService.updatedQuantityInCart(productId, increase)
     .subscribe({
       next: (response: any)=> {
-             console.log(response);
              if(response.quantity == 0) {
               this.delete(response);
              } else {
@@ -108,25 +99,20 @@ constructor(private productService: ProductService,
 
        if(id != -1) {
         const currentCartData = this.cartData.value;
-        console.log("current cart data: " + currentCartData);
 
         if(increase == true) {
           this.cartData.next([...this.cartData.value, id]);
         }
 
-        // Find index of item with matching ID
         const index = currentCartData.findIndex(item => item === id);
-        console.log("id-ul dn lista:  " + index);
       
         if (index !== -1 && increase == false) {
           currentCartData.splice(index, 1);
       
-          // Update cart data
           this.cartData.next(currentCartData);
 
           console.log("current cart data actualizat: " + currentCartData);
       
-          // Save cart data to local storage
           localStorage.setItem('cart', JSON.stringify(currentCartData));
        }
       }
@@ -166,11 +152,9 @@ constructor(private productService: ProductService,
   placeOrder(orderInput : OrderInput) {
     this.productService.placeOrder(orderInput).subscribe({
       next: (response: any)=> {
-        console.log(response);
         const currentCartData = this.cartData.value;
         currentCartData.splice(0, currentCartData.length);
         this.cartData.next(currentCartData);
-        console.log("current cart data actualizat: " + currentCartData);
         localStorage.setItem('cart', JSON.stringify(currentCartData));
         this.router.navigate(["/orderConfirm"]);
     },

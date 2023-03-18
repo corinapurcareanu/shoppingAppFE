@@ -26,7 +26,7 @@ export class ShowProductDetails implements OnInit{
   showTable = false;
   pageNumber: number = 0;
   public productDetails: Product[] = []
-  displayedColumns: string[] = ['Id', 'Product Name', 'description', 'Product Discounted Price', 'Product Actual Price', 'Type', 'Actions'];
+  displayedColumns: string[] = ['Id', 'Product Name', 'description', 'Product Discounted Price', 'Product Actual Price', 'Type', 'Delivery Days', 'Stock', 'Actions'];
 
   constructor(private productService: ProductService,
     public imagesDialog: MatDialog,
@@ -67,7 +67,6 @@ export class ShowProductDetails implements OnInit{
                 }
               }
               
-            //  this.productDetails = response;
          },
          error: (error: HttpErrorResponse)=> {
              console.log(error);

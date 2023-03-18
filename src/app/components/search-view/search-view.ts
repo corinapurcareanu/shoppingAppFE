@@ -63,7 +63,6 @@ export class SearchView implements OnInit{
     )
     .subscribe({
       next: (response: Product[])=> {
-             console.log(response);
              if(response.length == 12) {
               this.showNextPageButton = true;
              } else {
@@ -77,11 +76,10 @@ export class SearchView implements OnInit{
              if(this.productDetails.length === 0 && this.pageNumber === 0) {
               this.productsNotFound = true;
             }
-             console.log(this.productDetails.length)
-            //  this.productDetails = response;
+             (this.productDetails.length)
          },
          error: (error: HttpErrorResponse)=> {
-             console.log(error);
+            console.log(error);
          }
        });
    }

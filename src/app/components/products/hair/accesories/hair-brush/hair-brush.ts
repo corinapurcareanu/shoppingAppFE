@@ -46,7 +46,7 @@ export class HairBrush implements OnInit{
     )
     .subscribe({
       next: (response: Product[])=> {
-             console.log(response);
+             (response);
              if(response.length == 12) {
               this.showNextPageButton = true;
              } else {
@@ -61,7 +61,7 @@ export class HairBrush implements OnInit{
             //  this.productDetails = response;
          },
          error: (error: HttpErrorResponse)=> {
-             console.log(error);
+             (error);
          }
        });
    }

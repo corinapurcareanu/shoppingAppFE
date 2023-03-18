@@ -10,14 +10,13 @@ export class DragDirective {
 
   @HostBinding("style.background") private background = "#eee";
   
-  constructor(private sanitizer: DomSanitizer) {console.log("Constructor") }
+  constructor(private sanitizer: DomSanitizer) {("Constructor") }
 
   @HostListener("dragover", ["$event"])
   public onDragOver(evt: DragEvent) {
     evt.preventDefault();
     evt.stopPropagation();
     this.background = "#999";
-    console.log("dragover")
   }
 
   @HostListener("dragleave", ["$event"])
@@ -25,7 +24,6 @@ export class DragDirective {
     evt.preventDefault();
     evt.stopPropagation();
     this.background = "#eee";
-    console.log("dragleave")
   }
 
   @HostListener("drop", ["$event"])
@@ -33,7 +31,6 @@ export class DragDirective {
     evt.preventDefault();
     evt.stopPropagation();
     this.background = "#eee";
-    console.log("drop")
 
     let fileHandle: any = null;
     const file: any = evt.dataTransfer?.files[0];

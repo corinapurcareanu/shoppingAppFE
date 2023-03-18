@@ -98,6 +98,8 @@ import { AccessForbidden } from './components/acces.forbidden/access';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
+import { Paypal } from './components/paypal/paypal';
+import { NgxPayPalModule } from 'ngx-paypal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -163,6 +165,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle'
     Login,
     Home,
     Header,
+    Paypal,
     SignUp,
     AddProduct,
     DragDirective,
@@ -196,7 +199,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle'
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    NgxPayPalModule
   ],
   providers: [
     AuthGuard,

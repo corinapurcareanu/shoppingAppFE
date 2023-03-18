@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/_services/product.service/product.servic
 })
 export class OrderDetailsComponent implements OnInit{
   constructor(private productService: ProductService){}
-  displayedColumns = ["Id", "Order Details", "Name", "Address", "Contact Number", "Order Amount", "Date Placed", "Status", "Action"];
+  displayedColumns = ["Id", "Order Details", "Name", "Address", "Contact Number", "Order Amount", "Date Placed", "Status", "Delivery Method", "Action"];
   allOrderDetails : MyOrderDetails[] = [];
   displayedModalColumns = ["Product Name", "Price", "Quantity"];
   status: string = 'All'
@@ -22,7 +22,6 @@ export class OrderDetailsComponent implements OnInit{
     this.productService.getAllOrderDetailsForAdmin(this.status)
     .subscribe({
       next: (response : MyOrderDetails[]) => {
-        console.log(response);
         this.allOrderDetails = response;
       },
       error: (error: HttpErrorResponse)=> {
@@ -41,7 +40,7 @@ export class OrderDetailsComponent implements OnInit{
     .subscribe({
       next: (response) => {
         this.getAllOrderDetailsForAdmin();
-        console.log(response);
+        (response);
       },
       error: (error: HttpErrorResponse)=> {
         console.log(error);

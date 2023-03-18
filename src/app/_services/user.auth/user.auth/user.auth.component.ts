@@ -6,12 +6,12 @@ import { Injectable } from '@angular/core';
 export class UserAuthComponent {
   constructor() {}
 
-  public setRoles(roles:[]) {
-    localStorage.setItem('roles', JSON.stringify(roles));
+  public setRole(role: string) {
+    localStorage.setItem('roles', JSON.stringify(role));
   }
 
-  public getRoles(): [] {
-    return JSON.parse(localStorage.getItem('roles') || '{}');
+  public getRole(): string | null{
+    return localStorage.getItem('roles');
   }
 
   public setName(name: string) {
@@ -36,12 +36,13 @@ export class UserAuthComponent {
   }
 
   public isLoggedIn() : boolean {
-    return this.getRoles().length > 0 ? true : false;
+    return this.getRole()  != null ? true : false;
   }
 
   public isAdmin() : boolean {
-    const roles: any[] = this.getRoles();
-    if(roles.length > 0) {return roles[0].roleName === 'admin';}
+    const role: string | null = this.getRole();
+    if(role != null) {
+      return role.includes("admin");}
     return false;
   }
 }

@@ -21,9 +21,7 @@ export class MyOrdersComponent implements OnInit{
     this.productService.getOrderDetails()
     .subscribe({
       next: (response : MyOrderDetails[]) => {
-        console.log(response);
         this.myOrderDetails = response;
-        console.log(response);
       },
       error: (error: HttpErrorResponse)=> {
         console.log(error);

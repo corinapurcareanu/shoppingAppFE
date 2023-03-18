@@ -20,17 +20,12 @@ export class UserService {
   }
 
   public roleMatch(allowedRoles:string[]): boolean {
-    const userRoles: any = this.userAuthService.getRoles();
+    const userRole: string | null = this.userAuthService.getRole();
 
-    console.log("User roles" + this.userAuthService.getRoles());
-    console.log("Allowed roles" + allowedRoles);
-
-    if(userRoles != null && userRoles) {
-        for(let i=0; i < userRoles.length; i++) {
-          for(let j=0; j < allowedRoles.length; j++) {
-            if(userRoles[i].roleName === allowedRoles[j]) {
-              return true;
-            }
+    if(userRole != null) {
+        for(let i=0; i < allowedRoles.length; i++) {
+          if(userRole.includes(allowedRoles[i])) {
+            return true;
           }
         }
     }

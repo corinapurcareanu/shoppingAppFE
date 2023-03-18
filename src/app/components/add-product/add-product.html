@@ -74,6 +74,21 @@
             </div>
 
             <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter product delivery days</mat-label>
+                    <input matInput
+                    type="number"
+                    ngModel
+                    name="deliveryDays"
+                    id="deliveryDays"
+                    placeholder="Enter product delivery days"
+                    class="field"
+                    [(ngModel)]="product.deliveryDays"
+                    >
+                </mat-form-field>
+            </p>
+
+            <p>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Choose a type</mat-label>

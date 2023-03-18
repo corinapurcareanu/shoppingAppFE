@@ -19,7 +19,7 @@ export class CartComponent implements OnInit{
 
   ngOnInit(): void {
     this.cartService.getCartDetails();
-    console.log( this.cartService.cartDetails);
+    ( this.cartService.cartDetails);
   }
 
   checkout() {
@@ -35,7 +35,7 @@ export class CartComponent implements OnInit{
   }
 
   updatedQuantity(productId: number | null, increase: boolean) {
-    console.log("update " + productId)
+    ("update " + productId)
     this.cartService.updatedQuantity(productId, increase);
   }
 }

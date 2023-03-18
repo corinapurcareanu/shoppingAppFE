@@ -6,6 +6,7 @@ import { UserAuthComponent } from 'src/app/_services/user.auth/user.auth/user.au
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/_services/cart-service/cart.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PaymentService } from 'src/app/_services/payment-service/payment-service';
 
 @UntilDestroy()
 @Component({
@@ -23,13 +24,13 @@ export class Login implements OnInit{
   constructor(private userSrvice: UserService,
     private userAuthService: UserAuthComponent,
     private cartService: CartService,
+    private paymentService: PaymentService,
     private router: Router) { }
 
   ngOnInit(): void {
   }
 
   login(loginForm: NgForm) {
-    console.log("Form is submitted")
 
     this.nameNotFound= false;
     this.passwordNotFound = false;
@@ -39,14 +40,14 @@ export class Login implements OnInit{
 
       this.userSrvice.login(loginForm.value).subscribe({
       next: (response: any)=> {
-              // console.log(response);
-              this.userAuthService.setRoles(response.user.role);
+              (response);
+              this.userAuthService.setRole(response.user.role.roleName);
               this.userAuthService.setName(response.user.userFirstName);
               this.userAuthService.setToken(response.jwtToken);
-              console.log(response.jwtToken)
+              (response.jwtToken)
               this.cartService.reloadCart().subscribe({
                 next: () => {
-                  console.log("cart details retrieved");
+                  this.paymentService.reset();
                   this.router.navigate(['']);
                 },
                 error: (error: HttpErrorResponse)=> {
@@ -55,7 +56,7 @@ export class Login implements OnInit{
               });
           },
           error: (error)=> {
-              console.log(error);
+              (error);
               this.wrongCredentials = true;
           }
         });
@@ -63,7 +64,7 @@ export class Login implements OnInit{
 
     if(loginForm.value.userName == "") {
       this.nameNotFound = true;
-      console.log( this.nameNotFound )
+      ( this.nameNotFound )
     }
 
     if(loginForm.value.userPassword == "") {

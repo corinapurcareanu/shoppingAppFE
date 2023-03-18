@@ -13,7 +13,7 @@ export class SearchResolveService implements Resolve<String>{
   constructor(private productService: ProductService) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): String {
     const key = route.paramMap.get("searchkeyword");
-    console.log(key);
+    (key);
     
     return key !== null ? key : "";
   }

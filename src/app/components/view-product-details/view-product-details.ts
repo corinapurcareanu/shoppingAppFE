@@ -32,7 +32,7 @@ export class ProductViewDetails implements OnInit{
   
   ngOnInit(): void {
     this.product = this.activatedRoute.snapshot.data['product'];
-    console.log(this.product)
+    (this.product)
   }
 
   changeIndex(index: number) {
@@ -41,7 +41,6 @@ export class ProductViewDetails implements OnInit{
 
 
   addToCart(productId: number | null) {
-    console.log("product" + productId);
     this.cartService.addToCart(productId)
   }
 

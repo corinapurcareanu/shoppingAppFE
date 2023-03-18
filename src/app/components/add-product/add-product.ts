@@ -30,6 +30,8 @@ export class AddProduct implements OnInit{
     productDescription: "",
     productDiscountedPrice: 0,
     productActualPrice: 0,
+    deliveryDays: 2,
+    productStock: 20,
     productImages: [],
     type: ""
   }
@@ -45,12 +47,12 @@ export class AddProduct implements OnInit{
       this.isNewProduct = false;
     }
 
-    console.log("E nou: " + this.isNewProduct);
+    ("E nou: " + this.isNewProduct);
   }
 
   addProduct(addProductForm: NgForm) {
     const productFormData = this.prepareFormData(this.product);
-    console.log(addProductForm.value)
+    (addProductForm.value)
 
     this.nameNotFound= false;
     this.priceNotFound = false;
@@ -59,15 +61,15 @@ export class AddProduct implements OnInit{
     if(addProductForm.value.productName !== "" && addProductForm.value.productActualPrice !== 0
     && addProductForm.value.productActualPrice !== null && addProductForm.value.type !== ""
     && this.imageNotFound === false) {
-      console.log(this.product.type)
+      (this.product.type)
       this.productService.addNewProduct(productFormData).subscribe({
       next: (response: any)=> {
-              console.log(response);
+              (response);
               addProductForm.reset();
               this.product.productImages = [];
           },
           error: (error)=> {
-              console.log(error);
+              (error);
           }
         });
 
@@ -94,7 +96,7 @@ export class AddProduct implements OnInit{
       new Blob([JSON.stringify(product)], {type: 'application/json'})
     );
 
-    console.log(formData.get('product'));
+    (formData.get('product'));
     
     if(product.productImages.length === 0) {
       this.imageNotFound = true;
@@ -111,7 +113,7 @@ export class AddProduct implements OnInit{
   }
 
   onFileSelected(event: any) {
-    console.log(event);
+    (event);
     if(event.target.files) {
       const file = event.target.files[0];
 

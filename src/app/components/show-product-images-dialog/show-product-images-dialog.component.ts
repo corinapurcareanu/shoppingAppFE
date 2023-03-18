@@ -14,11 +14,10 @@ export class ShowProductImagesDialogComponent implements OnInit{
   }
 
   ngOnInit(): void {
-   // this.receiveImages();
   }
 
   receiveImages() {
-    console.log(this.data);
+    (this.data);
   }
 
 }
