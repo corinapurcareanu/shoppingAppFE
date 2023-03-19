@@ -46,6 +46,7 @@ export class Header implements OnInit {
 
   searchByKeyword(searchkeyword : NgForm) {
     const key : string = searchkeyword.value.searchKey;
+    searchkeyword.reset();
     this.router.navigate(['/search-view', {searchkeyword: key}])
   }
 }
