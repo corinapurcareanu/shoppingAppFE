@@ -53,7 +53,7 @@ a {
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow:0 0 0 50px rgb(221, 199, 177) inset; /* Change the color to your own background color */
+    -webkit-box-shadow:0 0 0 50px rgb(221, 199, 177) inset;
 }
 
 .error-style {

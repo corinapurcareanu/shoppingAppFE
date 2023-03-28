@@ -40,11 +40,9 @@ export class Login implements OnInit{
 
       this.userSrvice.login(loginForm.value).subscribe({
       next: (response: any)=> {
-              (response);
               this.userAuthService.setRole(response.user.role.roleName);
               this.userAuthService.setName(response.user.userFirstName);
               this.userAuthService.setToken(response.jwtToken);
-              (response.jwtToken)
               this.cartService.reloadCart().subscribe({
                 next: () => {
                   this.paymentService.reset();
@@ -56,7 +54,6 @@ export class Login implements OnInit{
               });
           },
           error: (error)=> {
-              (error);
               this.wrongCredentials = true;
           }
         });
@@ -64,7 +61,6 @@ export class Login implements OnInit{
 
     if(loginForm.value.userName == "") {
       this.nameNotFound = true;
-      ( this.nameNotFound )
     }
 
     if(loginForm.value.userPassword == "") {

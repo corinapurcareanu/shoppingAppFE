@@ -50,7 +50,6 @@ export class ShowProductDetails implements OnInit{
     )
     .subscribe({
       next: (response: Product[])=> {
-             console.log(response);
              this.productDetails = []
              response.forEach(product =>
               this.productDetails.push(product)
@@ -76,10 +75,8 @@ export class ShowProductDetails implements OnInit{
 
    deleteProduct(productId: number) {
     this.productDetails = []
-    console.log(productId)
     this.productService.deleteProduct(productId).subscribe({
       next: (response)=> {
-             console.log(response);
              this.getAllProducts();
          },
          error: (error: HttpErrorResponse)=> {

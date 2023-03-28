@@ -139,7 +139,6 @@ export class BuyProductComponent implements OnInit{
   }
 
   AllProductsInStock() {
-    ("check stock")
     let productsWithLessStockThanQuantity = 0;
     this.orderInput.cart.forEach(
       (c) => {
@@ -170,7 +169,6 @@ export class BuyProductComponent implements OnInit{
   setDeliveryCost(price: number) {
     this.orderInput.deliveryCost = price;
     this.chosenDeliveryMethod = true;
-    ( this.orderInput.deliveryCost)
   }
   openModal() {
     const modal = document.getElementById(`id01`);

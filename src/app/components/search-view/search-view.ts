@@ -76,7 +76,6 @@ export class SearchView implements OnInit{
              if(this.productDetails.length === 0 && this.pageNumber === 0) {
               this.productsNotFound = true;
             }
-             (this.productDetails.length)
          },
          error: (error: HttpErrorResponse)=> {
             console.log(error);

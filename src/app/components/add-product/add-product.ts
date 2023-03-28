@@ -97,7 +97,7 @@ export class AddProduct implements OnInit{
     );
 
     (formData.get('product'));
-    
+
     if(product.productImages.length === 0) {
       this.imageNotFound = true;
     } else{

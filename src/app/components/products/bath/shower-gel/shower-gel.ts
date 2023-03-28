@@ -58,7 +58,7 @@ export class ShowerGel implements OnInit{
              }
              this.productDetails = []
              response.forEach(p => this.productDetails.push(p));
-            //  this.productDetails = response;
+            
          },
          error: (error: HttpErrorResponse)=> {
              (error);

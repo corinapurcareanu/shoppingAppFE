@@ -58,7 +58,7 @@ export class HairWax implements OnInit{
              }
              this.productDetails = []
              response.forEach(p => this.productDetails.push(p));
-            //  this.productDetails = response;
+            
          },
          error: (error: HttpErrorResponse)=> {
              (error);
